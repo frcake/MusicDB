@@ -1,0 +1,18 @@
+<div class='container'>
+  <div class='row'>
+    <div class='form-group'>
+      <%=form_for(:session, url: login_path) do |user|%>
+        <div id='login-form' class='col-xs-12 col-sm-12 col-md-12'>
+          <%=user.email_field :email, placeholder: 'email' , class: 'form-control'%>
+        </div>
+        <div id='login-form' class='col-xs-12 col-sm-12 col-md-12'>
+          <%=user.password_field :password_digest, placeholder: 'Password' , class: 'form-control'%>
+        </div>
+        <div id='login-form' class='col-xs-12 col-sm-12 col-md-12'>
+          <%= user.submit "Log in", class: "btn btn-primary btn-block" %>
+        </div>
+        <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+      <%end%>
+    </div>
+  </div>
+</div>
