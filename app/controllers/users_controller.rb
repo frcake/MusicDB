@@ -13,7 +13,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(params[:user])
+    if @user.save
 
+    end
   end
 
   def update
@@ -23,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username,:email,:is_admin)
+    params.require(:user).permit(:username,:email,:password,:password_confirmation,:is_admin)
   end
 end
