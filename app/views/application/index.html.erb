@@ -1,14 +1,21 @@
-<h1>Welcome To Music DB</h1>
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
-<% if logged_in? %>
-  <%=current_user.username%>
-  <li>
-    <%= link_to('Logout', logout_path, :method => :delete) %>
-  </li>
-<% else %>
-  <li>
-    <%= link_to('Login', login_path) %>
-  </li>
-<% end %>
+<div class='container'>
+  <h1>Welcome To Music DB</h1>
+  <div class='row'>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <% if logged_in? %>
+      <%=current_user.username%>
+      <li>
+        <%= link_to('Logout', logout_path, :method => :delete) %>
+      </li>
+      <li>
+        <%= link_to 'Go To Profile', current_user%>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to('Login', login_path) %>
+      </li>
+    <% end %>
+  </div>
+</div>

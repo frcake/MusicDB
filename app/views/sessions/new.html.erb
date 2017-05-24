@@ -11,6 +11,12 @@
         <div id='login-form' class='col-xs-12 col-sm-12 col-md-12'>
           <%= user.submit "Log in", class: "btn btn-primary btn-block" %>
         </div>
+        <div id='login-form' class='col-xs-12 col-sm-12 col-md-12'>
+          <%= user.label :remember_me, class: "checkbox inline" do %>
+            <%= user.check_box :remember_me %>
+            <span>Remember me on this computer</span>
+          <% end %>
+        </div>
         <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
       <%end%>
     </div>

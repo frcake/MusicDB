@@ -3,8 +3,12 @@
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
   <%if  current_user%>
-    <%=@user.username%>
+    <div class="col-md-6">
+      <h3>Username:<%=@user.username%></h3>
+    </div>
   <%else%>
     <h3>Please log in</h3>
+    <%=link_to 'Login',login_path%>
   <%end%>
+  <%=link_to 'Go Home!', root_path%>
 </div>

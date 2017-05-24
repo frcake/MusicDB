@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       # Log the user in and redirect to the user's show page.
       flash[:success] = 'Welcome to MusicDB'
       log_in user
+      remember user
       redirect_to root_path
     else
       # Create an error message.
@@ -19,7 +20,6 @@ class SessionsController < ApplicationController
 
   #destroy session and log-out user
   def destroy
-    log_out
-
+    log_out if logged_in?
   end
 end
