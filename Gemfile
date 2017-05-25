@@ -32,9 +32,15 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'paperclip'
+gem 'paperclip', '~> 5.1'
 
 gem 'rmagick'
+
+gem 'font-awesome-rails'
+
+gem 'font-awesome-sass'
+
+gem 'bootstrap-sass'
 
 
 
@@ -44,6 +50,8 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 group :development do

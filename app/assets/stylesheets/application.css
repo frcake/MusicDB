@@ -12,9 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,500,300,700&subset=greek,latin);
-html, body {
-  font-family: 'Roboto' !important;
+html,
+body
+{
+    font-family: 'Roboto' !important;
 }
