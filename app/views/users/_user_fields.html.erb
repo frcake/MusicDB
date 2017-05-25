@@ -1,0 +1,22 @@
+<div class='row'>
+  <div class='form-group'>
+    <%=form_for(@user) do |user|%>
+      <%= render 'shared/error_messages' %>
+      <div id='register-form' class='col-xs-12 col-sm-12 col-md-12'>
+        <%=user.text_field :username, placeholder: 'Username' , class: 'form-control'%>
+      </div>
+      <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
+        <%=user.text_field :email, placeholder: 'email' , class: 'form-control'%>
+      </div>
+      <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
+        <%=user.password_field :password, placeholder: 'Password' , class: 'form-control'%>
+      </div>
+      <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
+        <%=user.password_field :password_confirmation, placeholder: 'Password Confirmation' , class: 'form-control'%>
+      </div>
+      <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
+        <%=user.submit 'Sign Up' , class: 'btn btn-primary btn-block'%>
+      </div>
+    <%end%>
+  </div>
+</div>
