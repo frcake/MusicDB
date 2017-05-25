@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170524225810) do
     t.datetime "updated_at", null: false
     t.string "password_digest", default: "", null: false
     t.string "password_confirmation", default: "", null: false
-    t.string "remember_digest"
     t.string "remember_token"
   end
 
