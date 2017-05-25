@@ -14,12 +14,15 @@
       <div id='category-col' class="col-md-3 col-md-offset-1">
         <h4>Child Categories</h4>
         <ul>
-          <%Category.root.descendants.each do |f|%>
-            <%if f.depth == 1 %>
-              <li>
-                <%=f.parent.name%> >
-                <%=f.name%>
-              </li>
+          <%Category.roots.each do |r|%>
+            <%r.descendants.each do |f|%>
+              <!--DEPTH = 1 -->
+              <%if f.depth == 1 %>
+                <li>
+                  <%=f.parent.name%> >
+                  <%=f.name%>
+                </li>
+              <%end%>
             <%end%>
           <%end%>
         </ul>
@@ -27,12 +30,15 @@
       <div id='category-col' class="col-md-3 col-md-offset-1">
         <h4>Grandchild Categories</h4>
         <ul>
-          <%Category.root.descendants.each do |f|%>
-            <%if f.depth == 2 %>
-              <li>
-                <%=f.parent.name%> >
-          <%=f.name%>
-              </li>
+          <%Category.roots.each do |r|%>
+            <%r.descendants.each do |f|%>
+              <!--DEPTH = 2 -->
+              <%if f.depth == 2 %>
+                <li>
+                  <%=f.parent.name%> >
+                  <%=f.name%>
+                </li>
+              <%end%>
             <%end%>
           <%end%>
         </ul>
