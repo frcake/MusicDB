@@ -1,0 +1,20 @@
+<div class='container'>
+  <h1>Category Creation</h1>
+  <%=form_for(@category) do |category|%>
+    <div id='category-form' class='col-xs-12 col-sm-12 col-md-12'>
+      <%=category.text_field :name, placeholder: 'Category name' , class: 'form-control'%>
+    </div>
+    <div id='category-form' class='col-xs-12 col-sm-12 col-md-12'>
+      <%= category.label 'Choose Parent'%>
+      <%= category.select :parent_id, nested_set_options(Category, @category) {|i| if !(i.depth >= 2)
+                                                                                      "#{i.root.name if !i.parent_id.nil? } #{'>' unless !i.parent_id}  #{i.name}"
+
+                                                                                   end
+                                                                                     } , {include_blank:true , include_hidden:false}  , class: 'select2 form-control'%>
+    </div>
+    <div id='category-form'  class='col-xs-12 col-sm-12 col-md-12'>
+      <%=category.submit 'Create category', class: 'btn btn-primary btn-block'%>
+    </div>
+  <%end%>
+  <%=render 'index_categories'%>
+</div>

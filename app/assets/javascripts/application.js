@@ -13,4 +13,23 @@
 
 //= require rails-ujs
 //= require turbolinks
+//= require select2
 //= require_tree .
+
+
+$( "#dropdown" ).select2({
+	theme: "bootstrap"
+
+});
+
+   $(document).ready(function() {
+     $('.select2').select2({
+	theme: "bootstrap"
+     });
+   });
+
+ $(document).ready(function() {
+  $(function(){
+    $(".listingoptions").tooltip();
+  });
+});

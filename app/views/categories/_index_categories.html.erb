@@ -1,0 +1,15 @@
+<%Category.roots.includes(:children,children: :children).each do |f|%>
+  <li>
+    <%=f.name%>
+  </li>
+  <%if f.children%>
+    <%f.children.each do |child|%>
+      <%=child.name%>
+      <%if child.children%>
+        <% child.children.each do |grandchild|%>
+          <%=grandchild.name%>
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+<%end%>
