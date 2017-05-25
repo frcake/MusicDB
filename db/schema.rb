@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524225810) do
+ActiveRecord::Schema.define(version: 20170525122033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,10 @@ ActiveRecord::Schema.define(version: 20170524225810) do
     t.date "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "artist_id"
+    t.bigint "band_id"
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["band_id"], name: "index_albums_on_band_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -46,6 +50,18 @@ ActiveRecord::Schema.define(version: 20170524225810) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "parent_id"
+    t.integer "lft", null: false
+    t.integer "rgt", null: false
+    t.integer "depth", default: 0, null: false
+    t.integer "children_count", default: 0, null: false
+    t.index ["lft"], name: "index_categories_on_lft"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["rgt"], name: "index_categories_on_rgt"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -84,4 +100,6 @@ ActiveRecord::Schema.define(version: 20170524225810) do
     t.string "remember_token"
   end
 
+  add_foreign_key "albums", "artists"
+  add_foreign_key "albums", "bands"
 end
