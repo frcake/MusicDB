@@ -4,12 +4,14 @@ class  Admin::AlbumsController < AdminController
 
   def new_album
     @album = Album.new
+    @bands = Band.all.map{|b| [b.name ,b.id]}
+    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
   end
 
   def create
     @album = Album.new(album_params)
-
-    if @album.save
+    #byebug
+    if @album.save!
       redirect_to root_path
     else
       respond_to do |format|
@@ -35,6 +37,7 @@ class  Admin::AlbumsController < AdminController
 
   def album_params
     #,:category_id,:photos
-    params.require(:album).permit(:name,:release_date)
+    params.require(:album).permit(:name,:release_date,
+    bandmenber_attributes: [:band_id,:artist_id])
   end
 end

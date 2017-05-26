@@ -25,6 +25,12 @@
             <label class= "pull-left" for="example-date-input"><%= f.label :release_date %></label>
             <%= f.date_field :release_date, class: "form-control" %>
           </div>
+          <div class="form-group">
+            <%= select_tag(:band_id, options_for_select(@bands), :prompt => "Choose a Band",class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <%= select_tag(:artist_id, options_for_select(@artists), :prompt => "Choose an Artist",class: "form-control") %>
+          </div>
           <p>
             <%= f.submit nil , class: 'btn btn-primary' %>
           </p>
