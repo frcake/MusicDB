@@ -10,6 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+*= require select2
+ *= require select2-bootstrap
  *= require_tree .
  *= require_self
  *= require font-awesome
@@ -20,4 +22,13 @@ html,
 body
 {
     font-family: 'Roboto' !important;
+}
+
+body {
+  padding-top: 70px;
+}
+
+#main-nav {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
 }

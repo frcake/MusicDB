@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
   get 'admin/dashboard' => 'admin#index'
 
+  resources :categories
+
 end
