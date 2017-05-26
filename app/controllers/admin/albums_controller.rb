@@ -10,13 +10,19 @@ class  Admin::AlbumsController < AdminController
 
   def create
     @album = Album.new(album_params)
-    #byebug
     if @album.save!
-      redirect_to root_path
+      if params[:images]
+        params[:images].each do |image|
+          @album.photo.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
+      redirect_to @album
     else
       respond_to do |format|
-        format.html { render admin_album_new_path }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        format.html {render action admin_album_new_path}
+        format.json { render @album.errors, status: :unprocessable_entity}
       end
     end
   end

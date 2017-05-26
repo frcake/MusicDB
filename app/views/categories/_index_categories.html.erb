@@ -1,0 +1,48 @@
+<div class='container'>
+  <div id="category-row" class="row">
+    <% if !Category.root.nil?%>
+      <div id='category-col' class="col-md-3 col-md-offset-1">
+        <h4>Root Categories</h4>
+        <ul>
+          <%Category.roots.each do |f|%>
+            <li>
+              <%=f.name%>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+      <div id='category-col' class="col-md-3 col-md-offset-1">
+        <h4>Child Categories</h4>
+        <ul>
+          <%Category.roots.each do |r|%>
+            <%r.descendants.each do |f|%>
+              <!--DEPTH = 1 -->
+              <%if f.depth == 1 %>
+                <li>
+                  <%=f.parent.name%> >
+                  <%=f.name%>
+                </li>
+              <%end%>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+      <div id='category-col' class="col-md-3 col-md-offset-1">
+        <h4>Grandchild Categories</h4>
+        <ul>
+          <%Category.roots.each do |r|%>
+            <%r.descendants.each do |f|%>
+              <!--DEPTH = 2 -->
+              <%if f.depth == 2 %>
+                <li>
+                  <%=f.parent.name%> >
+                  <%=f.name%>
+                </li>
+              <%end%>
+            <%end%>
+          <%end%>
+        </ul>
+      </div>
+    <%end%>
+  </div>
+</div>
