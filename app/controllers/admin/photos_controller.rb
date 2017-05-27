@@ -24,7 +24,7 @@ class Admin::PhotosController < AdminController
 
   def new
     @album = Album.find(params[:album_id])
-    @photo = @album.photos.build    
+    @photo = @album.photos.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @photo }
