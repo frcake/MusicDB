@@ -36,7 +36,7 @@ gem 'twitter-bootstrap-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'paperclip', '~> 5.1'
+gem 'paperclip'
 
 gem 'rmagick'
 

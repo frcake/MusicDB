@@ -13,12 +13,12 @@ class  Admin::AlbumsController < AdminController
     if @album.save!
       if params[:images]
         params[:images].each do |image|
-          @album.photo.create(image: image)
+          @album.photos.create(image: image)
         end
       else
         @album.photos.create
       end
-      redirect_to @album
+      redirect_to admin_albums_path
     else
       respond_to do |format|
         format.html {render action admin_album_new_path}
@@ -42,8 +42,7 @@ class  Admin::AlbumsController < AdminController
   end
 
   def album_params
-    #,:category_id,:photos
-    params.require(:album).permit(:name,:release_date,
-    bandmenber_attributes: [:band_id,:artist_id])
+    #,:category_id,
+    params.require(:album).permit(:name,:release_date,:photos)
   end
 end
