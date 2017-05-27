@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   #The namespace  creates a nested url for admin panel check rake routes for details
   namespace :admin do
     get 'album/new' => 'albums#new_album'
+    get 'categories/new' => 'categories#new_category'
+    get 'artists/new' => 'artists#new_artist'
     resources :albums,only:[:index,:create,:edit,:update,:delete]
+    resources :artists,only:[:index,:create,:edit,:update,:delete]
+    resources :categories , only:[:index,:create,:edit,:update,:delete]
     resources :photos
   end
 
