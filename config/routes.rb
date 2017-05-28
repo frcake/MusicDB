@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get 'albums/new' => 'albums#new_album'
     resources :albums,only:[:index,:create,:edit,:update,:delete]
     resources :photos
+    get 'songs/new' => 'songs#new_song'
+    resources :songs,only:[:index,:create,:edit,:update,:delete]
   end
 
 
