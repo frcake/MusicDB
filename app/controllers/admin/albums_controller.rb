@@ -21,7 +21,7 @@ class  Admin::AlbumsController < AdminController
       redirect_to admin_albums_path
     else
       respond_to do |format|
-        format.html {render action admin_album_new_path}
+        format.html {redirect_to admin_albums_new_path}
         format.json { render @album.errors, status: :unprocessable_entity}
       end
     end
