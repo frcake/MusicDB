@@ -18,8 +18,8 @@ class  Admin::AlbumsController < AdminController
       else
         @album.photos.create
       end
+      flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
-      flash[:info] = "Album #{@album.name} is created"
     else
       respond_to do |format|
         format.html {redirect_to admin_albums_new_path}

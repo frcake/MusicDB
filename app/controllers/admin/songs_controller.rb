@@ -12,8 +12,8 @@ class Admin::SongsController < AdminController
     @song.album_id = params[:album_id]
     @song.artist_id = params[:artist_id]
     if @song.save
+      flash[:success] = "Song #{@song.name} saved!"
       redirect_to admin_songs_path
-      flash[:info] = "Song #{@song.name} saved!"
     else
       respond_to do |format|
         format.html {redirect_to admin_songs_new_path}

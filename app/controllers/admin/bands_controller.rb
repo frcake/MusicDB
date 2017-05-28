@@ -9,15 +9,15 @@ class Admin::BandsController < AdminController
 
   def create
     @band = Band.new(band_params)
-    if @band.save!
+    if @band.save
       if params[:artists]
         params[:artists].each do |artist|
           @bandmembers = @band.bandmembers.build(artist_id: artist)
-          @bandmembers.save!
+          @bandmembers.save
         end
       end
+      flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
-      flash[:info] = "Band #{@band.name} is created"
     else
       respond_to do |format|
         format.html {redirect_to admin_bands_new_path}
