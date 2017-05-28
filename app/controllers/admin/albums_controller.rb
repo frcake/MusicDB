@@ -10,7 +10,7 @@ class  Admin::AlbumsController < AdminController
 
   def create
     @album = Album.new(album_params)
-    if @album.save!
+    if @album.save
       if params[:images]
         params[:images].each do |image|
           @album.photos.create(image: image)
@@ -19,6 +19,7 @@ class  Admin::AlbumsController < AdminController
         @album.photos.create
       end
       redirect_to admin_albums_path
+      flash[:info] = "Album #{@album.name} is created"
     else
       respond_to do |format|
         format.html {redirect_to admin_albums_new_path}

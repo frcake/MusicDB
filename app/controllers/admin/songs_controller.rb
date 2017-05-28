@@ -5,14 +5,13 @@ class Admin::SongsController < AdminController
     @song = Song.new
     @albums = Album.all.map{|x| [x.name ,x.id]}
     @artists = Artist.all.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
-    #@artists = Artist.all.map{|x| [x.lastname ,x.lastname, x.id]}
   end
 
   def create
     @song = Song.new(song_params)
     @song.album_id = params[:album_id]
     @song.artist_id = params[:artist_id]
-    if @song.save!
+    if @song.save
       redirect_to admin_songs_path
       flash[:info] = "Song #{@song.name} saved!"
     else

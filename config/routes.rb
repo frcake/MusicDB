@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application#index'
+
+  get 'sessions/new'
 
   resources :users
   get    '/login',   to: 'sessions#new'
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :photos
     get 'songs/new' => 'songs#new_song'
     resources :songs,only:[:index,:create,:edit,:update,:delete]
+    get 'bands/new' => 'bands#new_band'
+    resources :bands,only:[:index,:create,:edit,:update,:delete]
   end
 
 
