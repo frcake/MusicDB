@@ -38,7 +38,8 @@
             <%= f.text_field :genre, class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= select_tag("artists[]", options_for_select(@artists), :prompt => "Choose an Artist",:multiple => true, :size => 9 ,class: "form-control") %>
+            <label>Choose Artists</label>
+            <%= select_tag("artists[]", options_for_select(@artists),:multiple => true, :size => 9 , class: 'select2 form-control') %>
           </div>
           <p>
             <%= f.submit nil , class: 'btn btn-primary' %>
