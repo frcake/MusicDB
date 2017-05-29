@@ -5,11 +5,11 @@
     <div class="row">
       <div class="col-lg-12">
         <h1 class="page-header">
-          Dashboard <small>New Album</small>
+          Dashboard <small>New Artist</small>
         </h1>
         <ol class="breadcrumb">
           <li class="active">
-            <i class="fa fa-dashboard"></i> Album
+            <i class="fa fa-dashboard"></i> Artist
           </li>
         </ol>
       </div>
@@ -42,39 +42,35 @@
             <%= f.label :description, class: 'pull-left'%>
             <%= f.text_field :description, class: "form-control" %>
           </div>
-          <div class="form-group
-          <%= f.label :country, class: 'pull-left'%>
+          <div class="form-group">
+            <%= f.label :country, class: 'pull-left'%>
             <%= f.text_field :country, class: "form-control" %>
           </div>
-            <!--
-          <%# if @artist.photos.exists? %>
-            <%# @artist.photos.each do |z| %>
+          <% if @artist.photos.exists? %>
+            <% @artist.photos.each do |z| %>
               <div class="seminarimage">
-                <%# if !z.image_file_size.nil? %>
-                  <%#= image_tag z.image , class: "showimage" %>
-                  <%#= link_to "Delete Photo",admin_photo_path(z), :method => :delete  , remote: true , class: "photo_delete"%>
-                <%#else%>
+                <% if !z.image_file_size.nil? %>
+                  <%= image_tag z.image , class: "showimage" %>
+                  <%= link_to "Delete Photo",admin_photo_path(z), :method => :delete  , remote: true , class: "photo_delete"%>
+                <%else%>
                   <p>
                     Προσθέστε μια φωτογραφία
                   </p>
-                <%#end%>
+                <%end%>
               </div>
-            <%#end%>
-          <%#end%>
-
+            <%end%>
+          <%end%>
           <div class="control-group">
-            <%#= f.label :photos, :class => 'control-label' %>
+            <%= f.label :photos, :class => 'control-label' %>
             <div class="form-group">
-              <%#= file_field_tag "images[]", type: :file, multiple: true ,class: "form-control-file" %>
+              <%= file_field_tag "images[]", type: :file, multiple: true ,class: "form-control-file" %>
             </div>
           </div>
-            -->
-            <p>
-              <%= f.submit nil , class: 'btn btn-primary' %>
-            </p>
-          <% end %>
-          <%= link_to 'Back', admin_dashboard_path %>
-        </div>
+          <p>
+            <%= f.submit nil , class: 'btn btn-primary' %>
+          </p>
+        <% end %>
+        <%= link_to 'Back', admin_dashboard_path %>
       </div>
     </div>
   </div>

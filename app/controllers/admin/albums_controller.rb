@@ -16,7 +16,7 @@ class  Admin::AlbumsController < AdminController
 
   def create
     @album = Album.new(album_params)
-    if @album.save!
+    if @album.save
       if params[:images]
         params[:images].each do |image|
           @album.photos.create(image: image)

@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <%= form_for @band,url: admin_bands_path do |f| %>
+        <%= form_for @band,url: admin_bands_path, :html => { :multipart => true } do |f| %>
           <% if @band.errors.any? %>
             <div id="error_explanation">
               <h2>
@@ -38,7 +38,28 @@
             <%= f.text_field :genre, class: "form-control" %>
           </div>
           <div class="form-group">
-            <%= select_tag("artists[]", options_for_select(@artists), :prompt => "Choose an Artist",:multiple => true, :size => 9 ,class: "form-control") %>
+            <label>Choose Artists</label>
+            <%= select_tag("artists[]", options_for_select(@artists),:multiple => true, :size => 9 , class: 'select2 form-control') %>
+          </div>
+          <% if @band.photos.exists? %>
+            <% @band.photos.each do |z| %>
+              <div class="seminarimage">
+                <% if !z.image_file_size.nil? %>
+                  <%= image_tag z.image , class: "showimage" %>
+                  <%= link_to "Delete Photo",admin_photo_path(z), :method => :delete  , remote: true , class: "photo_delete"%>
+                <%else%>
+                  <p>
+                    Προσθέστε μια φωτογραφία
+                  </p>
+                <%end%>
+              </div>
+            <%end%>
+          <%end%>
+          <div class="control-group">
+            <%= f.label :photos, :class => 'control-label' %>
+            <div class="form-group">
+              <%= file_field_tag "images[]", type: :file, multiple: true ,class: "form-control-file" %>
+            </div>
           </div>
           <p>
             <%= f.submit nil , class: 'btn btn-primary' %>
