@@ -8,4 +8,5 @@ class Album < ApplicationRecord
   #validation
   validates :name , presence: true
   #validates :release_date, presence: true
+
 end
