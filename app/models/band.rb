@@ -4,4 +4,5 @@ class Band < ApplicationRecord
   has_many :bandmembers
   has_many :photos,as: :imageable, dependent: :destroy
   has_many :artists , through: :bandmembers
+  belongs_to :category
 end

@@ -34,11 +34,16 @@
             <%= f.text_field :name, class: "form-control" %>
           </div>
           <div class="form-group">
-            <label class= "pull-left" for="example-date-input"><%= f.label :release_date %></label>
+            <%= f.label :release_date %>
             <%= f.date_field :release_date, class: "form-control" %>
           </div>
           <div class="form-group">
-            <%=f.select(:artist_id, Artist.all.collect {|u| ["#{u.firstname} #{u.lastname}", u.id]}, :prompt => 'Select')%>
+            <label>Artist</label>
+            <%=f.select(:artist_id, artists_for_select, {include_blank:true , include_hidden:false} , class: 'select2 form-control')%>
+          </div>
+          <div class="form-group">
+            <label>Category/Genre</label>
+            <%= f.select(:category_id, deep_categories_for_select, {include_blank:true , include_hidden:false}  , class: 'select2 form-control')%>
           </div>
           <% if @album.photos.exists? %>
             <% @album.photos.each do |z| %>

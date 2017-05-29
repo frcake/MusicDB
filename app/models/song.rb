@@ -2,6 +2,7 @@ class Song < ApplicationRecord
   belongs_to :album
   belongs_to :band, optional: true
   belongs_to :artist
+  belongs_to :category
 
   #validation
   validates :name, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529040059) do
+ActiveRecord::Schema.define(version: 20170529061830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 20170529040059) do
     t.datetime "updated_at", null: false
     t.bigint "artist_id"
     t.bigint "band_id"
+    t.bigint "category_id"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["band_id"], name: "index_albums_on_band_id"
+    t.index ["category_id"], name: "index_albums_on_category_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -33,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170529040059) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_artists_on_category_id"
   end
 
   create_table "bandmembers", force: :cascade do |t|
@@ -50,6 +54,8 @@ ActiveRecord::Schema.define(version: 20170529040059) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_bands_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -83,8 +89,10 @@ ActiveRecord::Schema.define(version: 20170529040059) do
     t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
     t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
+    t.index ["category_id"], name: "index_songs_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,4 +109,8 @@ ActiveRecord::Schema.define(version: 20170529040059) do
 
   add_foreign_key "albums", "artists"
   add_foreign_key "albums", "bands"
+  add_foreign_key "albums", "categories"
+  add_foreign_key "artists", "categories"
+  add_foreign_key "bands", "categories"
+  add_foreign_key "songs", "categories"
 end

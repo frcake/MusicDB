@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name,:parent_id,:lft,:rgt,:depth,:children_count)
+    params.require(:category).permit(:name,:category_id,:parent_id,:lft,:rgt,:depth,:children_count)
   end
 
 end
