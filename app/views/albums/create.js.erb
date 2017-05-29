@@ -1,2 +1,2 @@
-$(".album_form").html("<%= escape_javascript(render 'albums/album_row', albums: @albums) %>")
-$(".album_form").html("<%= escape_javascript(render 'admin/new_album') %>")
+$('.album_form').html("<%= escape_javascript(render 'admin/new_album') %>")
+$('.album_index').html("<%= escape_javascript(render 'albums/album_row' ,  albums: @albums) %>")

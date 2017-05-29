@@ -47,10 +47,7 @@ gem 'font-awesome-sass'
 
 gem 'bootstrap-sass'
 
-
 gem 'awesome_nested_set', '~> 3.1'
-
-
 
 gem 'select2-rails'
 group :development, :test do
