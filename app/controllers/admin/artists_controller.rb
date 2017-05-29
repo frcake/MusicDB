@@ -1,6 +1,6 @@
 class  Admin::ArtistsController < AdminController
-
   #before_action :require_admin
+  #before_action :find_artist
 
   def new_artist
     @artist = Artist.new
@@ -9,18 +9,15 @@ class  Admin::ArtistsController < AdminController
 
   def create
     @artist = Artist.new(artist_params)
-    if @artist.save!
-=begin
+    if @artist.save
       if params[:images]
         params[:images].each do |image|
           @artist.photos.create(image: image)
         end
-
-
       else
         @artist.photos.create
       end
-=end
+      flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
     else
       respond_to do |format|
@@ -46,6 +43,6 @@ class  Admin::ArtistsController < AdminController
 
   def artist_params
     #,:category_id,
-    params.require(:artist).permit(:firstname,:lastname,:country,:description)
+    params.require(:artist).permit(:firstname,:lastname,:country,:description,:photos)
   end
 end

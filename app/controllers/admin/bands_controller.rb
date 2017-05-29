@@ -1,5 +1,7 @@
 class Admin::BandsController < AdminController
   before_action :set_band, only:[:update,:destroy]
+  def index_band
+  end
 
   def new_band
     @band = Band.new
@@ -9,12 +11,19 @@ class Admin::BandsController < AdminController
 
   def create
     @band = Band.new(band_params)
-    if @band.save
+    if @band.save!
       if params[:artists]
         params[:artists].each do |artist|
           @bandmembers = @band.bandmembers.build(artist_id: artist)
           @bandmembers.save
         end
+      end
+      if params[:images]
+        params[:images].each do |image|
+          @band.photos.create(image: image)
+        end
+      else
+        @band.photos.create
       end
       flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
@@ -29,6 +38,6 @@ class Admin::BandsController < AdminController
   private
 
   def band_params
-    params.require(:band).permit(:name,:genre,:description,:artist,bandmembers:[:band_id,:artist_id])
+    params.require(:band).permit(:name,:genre,:description,:artist,:photos,bandmembers:[:band_id,:artist_id])
   end
 end
