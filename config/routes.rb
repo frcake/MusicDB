@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  resources :artists
   resources :categories
 
 end

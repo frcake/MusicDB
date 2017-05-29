@@ -1,12 +1,10 @@
 class Album < ApplicationRecord
   has_many :songs
-  has_many :photos, dependent: :destroy, inverse_of: :album
+  has_many :photos,as: :imageable, dependent: :destroy#, inverse_of: :album
   belongs_to :band, optional: true
   belongs_to :artist, optional: true
 
   #validation
   validates :name , presence: true
-  validates :release_date, presence: true
-  validates :artist_id, presence: true
-  validates :band_id, presence: true 
+  #validates :release_date, presence: true
 end
