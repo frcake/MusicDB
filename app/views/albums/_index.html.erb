@@ -1,0 +1,19 @@
+<div class="container">
+  <div class= "album_form">
+    <%= render 'admin/new_album'%>
+  </div>
+  <div class="panel panel-default">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Release Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'albums/album_row' , albums: @albums%>
+      </tbody>
+    </table>
+  </div>
+</div>
