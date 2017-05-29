@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   get 'admin/dashboard' => 'admin#index'
   #The namespace  creates a nested url for admin panel check rake routes for details
   namespace :admin do
+
     get 'albums/new' => 'albums#new_album'
+
+    get 'categories/new' => 'categories#new_category'
+    get 'artists/new' => 'artists#new_artist'
     resources :albums,only:[:index,:create,:edit,:update,:delete]
+    resources :artists,only:[:index,:create,:edit,:update,:delete]
+    resources :categories , only:[:index,:create,:edit,:update,:delete]
     resources :photos
     get 'songs/new' => 'songs#new_song'
     resources :songs,only:[:index,:create,:edit,:update,:delete]
