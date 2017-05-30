@@ -1,4 +1,5 @@
 class Admin::BandsController < AdminController
+  include PhotosHelper
   before_action :set_band, only:[:update,:destroy]
   def index_band
   end
@@ -18,13 +19,7 @@ class Admin::BandsController < AdminController
           @bandmembers.save
         end
       end
-      if params[:images]
-        params[:images].each do |image|
-          @band.photos.create(image: image)
-        end
-      else
-        @band.photos.create
-      end
+      photo_create(params[:images])
       flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
     else
