@@ -12,8 +12,8 @@
       <%album.photos.each do |photo|%>
         <%=image_tag photo.image(:medium)%>
       <%end%>
-      <%=link_to Artist.find(album.artist_id).firstname, artist_path(album.artist_id)%>
-      <%=link_to Artist.find(album.artist_id).lastname, artist_path(album.artist_id)%>
+      <%#=link_to Artist.find(album.artist_id).firstname, artist_path(album.artist_id)%>
+      <%#=link_to Artist.find(album.artist_id).lastname, artist_path(album.artist_id)%>
     <%end%>
   </div>
 </div>
