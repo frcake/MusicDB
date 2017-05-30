@@ -1,6 +1,6 @@
 class  Admin::AlbumsController < AdminController
   include PhotosHelper
-  before_action :find_album, only:[:update,:destroy]
+  before_action :find_album, only: [:update,:show,:destroy,:edit]
   #before_action :require_admin
   def index_album
     @albums = Album.all.order(:release_date)
@@ -8,8 +8,8 @@ class  Admin::AlbumsController < AdminController
 
   def new_album
     @album = Album.new
-    @bands = Band.all.map{|b| [b.name ,b.id]}
-    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
+    # @bands = Band.all.map{|b| [b.name ,b.id]}
+    # @artists = Artist.all.map{|b| [b.firstname ,b.id]}
   end
 
   def create
@@ -34,10 +34,35 @@ class  Admin::AlbumsController < AdminController
     end
   end
 
-  def edit
+  def edit_album
+    @album = Album.find(params[:id])
+    @bands = Band.all.map{|b| [b.name ,b.id]}
+    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
   end
 
   def update
+    if @album.update_attributes(album_params)
+      #@album.category_id = params[:catergory_id]
+      if parmas[:images]
+        @album.photos.each do |image|
+          photo.destroy if photo.image_file_size.nil?
+        end
+        params[:images].each do |image|
+          @album.photo.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
+      respond_to do |format|
+        format.html { redirect_to admin_albums_path( @album), notice: 'Το σεμινάριο ενημερώθηκε επιτυχημένα' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format| ## Add this
+        format.html { redirect_to admin_albums_edit_path(@album) }
+        format.json { render json:  @album.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

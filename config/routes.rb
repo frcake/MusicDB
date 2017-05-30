@@ -20,14 +20,16 @@ Rails.application.routes.draw do
 
     get 'albums/new' => 'albums#new_album'
     get 'albums' => 'albums#index_album'
-    resources :albums,only:[:create,:edit,:update,:destroy]
+    get 'albums/:id/edit' => 'albums#edit_album',as: 'albums_edit'
+    resources :albums,only:[:create,:update,:destroy]
 
     resources :photos
 
     get 'songs/new' => 'songs#new_song'
     get 'songs' => 'songs#index_song'
+    get 'songs/:id/edit' => 'songs#edit_song'
     resources :songs,only:[:index,:create,:edit,:update,:destroy]
-        get 'bands/new' => 'bands#new_band'
+    get 'bands/new' => 'bands#new_band'
     get 'bands' => 'bands#index_band'
     resources :bands,only:[:index,:create,:edit,:update,:destroy]
   end
@@ -35,5 +37,6 @@ Rails.application.routes.draw do
 
   resources :artists
   resources :categories
+  resource :albums
 
 end

@@ -2,7 +2,7 @@
   <td><%=album.name%></td>
   <td><%=album.release_date%></td>
   <td>
-    <%= link_to edit_admin_album_path(album.id),class: "btn btn-primary btn-xs" do %>
+    <%= link_to admin_albums_edit_path(album.id),class: "btn btn-primary btn-xs" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>
   <%end%>
   <%= link_to admin_album_path(album.id),method: :delete,class: "btn btn-danger btn-xs" do %>
