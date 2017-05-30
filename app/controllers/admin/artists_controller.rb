@@ -1,4 +1,5 @@
 class  Admin::ArtistsController < AdminController
+  include PhotosHelper
   #before_action :require_admin
   #before_action :find_artist
 
@@ -10,13 +11,7 @@ class  Admin::ArtistsController < AdminController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      if params[:images]
-        params[:images].each do |image|
-          @artist.photos.create(image: image)
-        end
-      else
-        @artist.photos.create
-      end
+      photo_create(params[:images])
       flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
     else

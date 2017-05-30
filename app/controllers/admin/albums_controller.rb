@@ -1,4 +1,5 @@
 class  Admin::AlbumsController < AdminController
+  include PhotosHelper
   before_action :find_album, only:[:update,:destroy]
   #before_action :require_admin
   def index_album
@@ -17,13 +18,7 @@ class  Admin::AlbumsController < AdminController
   def create
     @album = Album.new(album_params)
     if @album.save
-      if params[:images]
-        params[:images].each do |image|
-          @album.photos.create(image: image)
-        end
-      else
-        @album.photos.create
-      end
+      photo_create(params[:images])
       flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
     else
