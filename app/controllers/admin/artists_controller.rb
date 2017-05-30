@@ -11,7 +11,13 @@ class  Admin::ArtistsController < AdminController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      photo_create(params[:images])
+      if params[:images]
+        params[:images].each do |image|
+          @album.photos.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
       flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
     else

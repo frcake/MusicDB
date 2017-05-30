@@ -19,7 +19,13 @@ class Admin::BandsController < AdminController
           @bandmembers.save
         end
       end
-      photo_create(params[:images])
+      if params[:images]
+        params[:images].each do |image|
+          @album.photos.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
       flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
     else

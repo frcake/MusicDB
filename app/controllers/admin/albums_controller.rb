@@ -4,9 +4,6 @@ class  Admin::AlbumsController < AdminController
   #before_action :require_admin
   def index_album
     @albums = Album.all.order(:release_date)
-    @album = Album.new
-    @bands = Band.all.map{|b| [b.name ,b.id]}
-    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
   end
 
   def new_album
@@ -18,7 +15,13 @@ class  Admin::AlbumsController < AdminController
   def create
     @album = Album.new(album_params)
     if @album.save
-      photo_create(params[:images])
+      if params[:images]
+        params[:images].each do |image|
+          @album.photos.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
       flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
     else
