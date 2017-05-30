@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
     get 'albums/new' => 'albums#new_album'
     get 'albums' => 'albums#index_album'
-    get 'albums/:id/edit' => 'albums#edit_album',as: 'albums_edit'
+    get 'albums/:id/edit' => 'albums#edit_album' , as: 'albums_edit'
     resources :albums,only:[:create,:update,:destroy]
 
     resources :photos
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
 
   resources :artists
-  resources :categories
-  resource :albums
+  #resources :categories
+  #resource :albums
 
 end

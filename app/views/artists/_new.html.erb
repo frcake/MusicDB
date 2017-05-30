@@ -17,7 +17,7 @@
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <%= form_for @artist,url: admin_artists_path,:html => { :multipart => true } do |f| %>
+        <%= form_for [:admin , @artist],:html => { :multipart => true } do |f| %>
           <% if @artist.errors.any? %>
             <div id="error_explanation">
               <h2>
@@ -46,6 +46,10 @@
           <div class="form-group">
             <%= f.label :country, class: 'pull-left'%>
             <%= f.text_field :country, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <label>Category/Genre</label>
+            <%= f.select(:category_id, deep_categories_for_select, {include_blank:true , include_hidden:false}  , class: 'select2 form-control')%>
           </div>
           <% if @artist.photos.exists? %>
             <% @artist.photos.each do |z| %>

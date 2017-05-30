@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>MusicDB</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'true' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <nav id="main-nav" class="navbar navbar-default navbar-fixed-top">
@@ -21,18 +20,16 @@
             <li>
               <%=link_to current_user.username, user_path(current_user) %>
             </li>
+            <li><%=link_to 'Logout' ,logout_path , method: :delete%></li>
           <%else%>
             <li><%=link_to 'Login' ,login_path%></li>
+            <li><%=link_to 'Sign Up' ,new_user_path%></li>
           <%end%>
-          <li><%=link_to 'Sign Up' ,new_user_path%></li>
         </ul>
       </div>
     </nav>
-    <!-- partial -->
-    <div id="navbar-spacer">
-    </div>
     <%= yield %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'true' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

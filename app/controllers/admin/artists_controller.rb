@@ -13,10 +13,10 @@ class  Admin::ArtistsController < AdminController
     if @artist.save
       if params[:images]
         params[:images].each do |image|
-          @album.photos.create(image: image)
+          @artist.photos.create(image: image)
         end
       else
-        @album.photos.create
+        @artist.photos.create
       end
       flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
@@ -44,6 +44,6 @@ class  Admin::ArtistsController < AdminController
 
   def artist_params
     #,:category_id,
-    params.require(:artist).permit(:firstname,:lastname,:country,:description,:photos)
+    params.require(:artist).permit(:firstname,:lastname,:country,:category_id,:description,:photos)
   end
 end

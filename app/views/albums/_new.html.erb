@@ -16,7 +16,7 @@
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-4">
-        <%= form_for @album,:html => { :multipart => true } do |f| %>
+        <%= form_for [:admin , @album],:html => { :multipart => true } do |f| %>
           <% if @album.errors.any? %>
             <div id="error_explanation">
               <h2>
@@ -51,7 +51,7 @@
               <div class="seminarimage">
                 <% if !z.image_file_size.nil? %>
                   <%= image_tag z.image , class: "showimage" %>
-                  <%= link_to "Delete Photo",admin_photo_path(z), :method => :delete  , remote: true , class: "photo_delete"%>
+                  <%= link_to "Delete Photo",admin_photo_path(z), method: :delete   , class: "photo_delete"%>
                 <%else%>
                   <p>
                     Προσθέστε μια φωτογραφία

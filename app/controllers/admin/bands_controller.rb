@@ -21,10 +21,10 @@ class Admin::BandsController < AdminController
       end
       if params[:images]
         params[:images].each do |image|
-          @album.photos.create(image: image)
+          @band.photos.create(image: image)
         end
       else
-        @album.photos.create
+        @band.photos.create
       end
       flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
@@ -39,6 +39,6 @@ class Admin::BandsController < AdminController
   private
 
   def band_params
-    params.require(:band).permit(:name,:genre,:description,:artist,:photos,bandmembers:[:band_id,:artist_id])
+    params.require(:band).permit(:name,:genre,:description,:artist,:photos,:category_id,bandmember:[:band_id,:artist_id])
   end
 end

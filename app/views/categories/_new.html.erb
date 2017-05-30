@@ -1,6 +1,6 @@
 <div class='container'>
   <h1>Category Creation</h1>
-  <%=form_for(@category) do |category|%>
+  <%=form_for [:admin, @category] do |category|%>
     <div id='category-form' class='col-xs-12 col-sm-12 col-md-12'>
       <%=category.text_field :name, placeholder: 'Category name' , class: 'form-control'%>
     </div>
