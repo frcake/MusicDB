@@ -43,6 +43,10 @@
             <%=f.select(:artist_id, artists_for_select, {include_blank:true , include_hidden:false} , class: 'select2 form-control')%>
           </div>
           <div class="form-group">
+            <label>Artist</label>
+            <%=f.select(:band_id, bands_for_select, {include_blank:true , include_hidden:false} , class: 'select2 form-control')%>
+          </div>
+          <div class="form-group">
             <label>Category/Genre</label>
             <%= f.select(:category_id, deep_categories_for_select, {include_blank:true , include_hidden:false}  , class: 'select2 form-control')%>
           </div>

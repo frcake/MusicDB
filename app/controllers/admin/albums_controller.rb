@@ -69,6 +69,6 @@ class  Admin::AlbumsController < AdminController
   end
 
   def album_params
-    params.require(:album).permit(:name,:artist_id,:category_id,:release_date,:photos)
+    params.require(:album).permit(:name,:artist_id,:category_id,:band_id,:release_date,:photos)
   end
 end
