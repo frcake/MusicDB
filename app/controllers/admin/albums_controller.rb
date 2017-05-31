@@ -1,24 +1,25 @@
 class  Admin::AlbumsController < AdminController
   include PhotosHelper
-  before_action :find_album, only:[:update,:destroy]
+  before_action :find_album, only: [:update,:show,:destroy,:edit]
   #before_action :require_admin
   def index_album
-    @albums = Album.all.order(:release_date)
-    @album = Album.new
-    @bands = Band.all.map{|b| [b.name ,b.id]}
-    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
+    @albums = Album.all.order(updated_at: :desc)
   end
 
   def new_album
     @album = Album.new
-    @bands = Band.all.map{|b| [b.name ,b.id]}
-    @artists = Artist.all.map{|b| [b.firstname ,b.id]}
   end
 
   def create
     @album = Album.new(album_params)
     if @album.save
-      photo_create(params[:images])
+      if params[:images]
+        params[:images].each do |image|
+          @album.photos.create(image: image)
+        end
+      else
+        @album.photos.create
+      end
       flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
     else
@@ -31,14 +32,36 @@ class  Admin::AlbumsController < AdminController
     end
   end
 
-  def edit
+  def edit_album
+    @album = Album.find(params[:id])
   end
 
   def update
+    if @album.update_attributes(album_params)
+      if params[:images]
+        @album.photos.each do |image|
+          image.delete if image.image_file_size.nil?
+        end
+        params[:images].each do |image|
+          @album.photos.create(image: image)
+        end
+      else
+        @album.photos.create unless @album.photos.exists?
+      end
+      flash[:success] = "Album updated!"
+      redirect_to admin_albums_path
+    else
+      respond_to do |format| ## Add this
+        format.html { redirect_to admin_albums_edit_path(@album) }
+        format.json { render json:  @album.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
   end
+
+
   private
 
   def find_album
@@ -46,7 +69,6 @@ class  Admin::AlbumsController < AdminController
   end
 
   def album_params
-    #,:category_id,
     params.require(:album).permit(:name,:artist_id,:category_id,:release_date,:photos)
   end
 end
