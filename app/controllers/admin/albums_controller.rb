@@ -23,12 +23,8 @@ class  Admin::AlbumsController < AdminController
       flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
     else
-      respond_to do |format|
-        #format.js { render 'albums/create.js.erb' }
-        format.html {redirect_to admin_albums_new_path}
-        format.json { render @album.errors, status: :unprocessable_entity}
-
-      end
+      flash[:warning] = "Please try again"
+      redirect_to admin_albums_new_path
     end
   end
 
@@ -51,14 +47,15 @@ class  Admin::AlbumsController < AdminController
       flash[:success] = "Album updated!"
       redirect_to admin_albums_path
     else
-      respond_to do |format| ## Add this
-        format.html { redirect_to admin_albums_edit_path(@album) }
-        format.json { render json:  @album.errors, status: :unprocessable_entity }
-      end
+      flash[:warning] = "Please try again"
+      redirect_to admin_albums_edit_path(@album)
     end
   end
 
   def destroy
+    @album.destroy
+    flash[:success] = "Successfully deleted album"
+    redirect_to admin_albums_path
   end
 
 

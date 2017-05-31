@@ -29,14 +29,16 @@ class Admin::BandsController < AdminController
       flash[:success] = "Band #{@band.name} is created"
       redirect_to admin_bands_path
     else
-      respond_to do |format|
-        format.html {redirect_to admin_bands_new_path}
-        format.json {render @band.errors , status: :unprocessable_entity}
-      end
+      flash[:warning] = "Please try again"
+      redirect_to admin_bands_new_path
     end
   end
 
   private
+
+  def set_band
+    @band = Band.find(params[:id])
+  end
 
   def band_params
     params.require(:band).permit(:name,:genre,:description,:artist,:photos,:category_id,bandmember:[:band_id,:artist_id])

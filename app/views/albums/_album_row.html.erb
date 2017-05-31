@@ -5,7 +5,7 @@
     <%= link_to admin_albums_edit_path(album),class: "btn btn-primary btn-xs" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>
   <%end%>
-  <%= link_to admin_album_path(album),method: :delete,class: "btn btn-danger btn-xs" do %>
+  <%= link_to admin_album_path(album),method: :delete, data: {confirm: 'Are you sure?'},class: "btn btn-danger btn-xs" do %>
     <span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
 <%end%>
 </td>

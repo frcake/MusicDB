@@ -1,5 +1,4 @@
 class Admin::PhotosController < AdminController
-  #before_action :require_user, only: [:index, :show]
   before_action :find_photo, only:[:index,:show]
 
   def index
@@ -49,6 +48,7 @@ class Admin::PhotosController < AdminController
       render json: [{ error: 'custom_failure' }], status: 304
     end
   end
+
   def edit
     @photo = Photo.find(params[:id])
   end
@@ -71,12 +71,7 @@ class Admin::PhotosController < AdminController
     @photo = Photo.find(params[:id])
     @photo.destroy
     redirect_to admin_albums_path
-    # respond_to do |format|
-    #   format.json { head :no_content }
-    #   format.js   { render layout: false }
-    # end
   end
-
 
   private
   def find_photo

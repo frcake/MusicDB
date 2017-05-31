@@ -21,10 +21,8 @@ class  Admin::ArtistsController < AdminController
       flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
     else
-      respond_to do |format|
-        format.html {render action admin_artist_new_path}
-        format.json { render @artist.errors, status: :unprocessable_entity}
-      end
+      flash[:warning] = "Please try again"
+      action admin_artist_new_path
     end
   end
 
