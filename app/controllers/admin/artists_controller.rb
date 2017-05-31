@@ -11,14 +11,18 @@ class  Admin::ArtistsController < AdminController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      photo_create(params[:images])
+      if params[:images]
+        params[:images].each do |image|
+          @artist.photos.create(image: image)
+        end
+      else
+        @artist.photos.create
+      end
       flash[:success] = "Artist #{@artist.firstname} #{@artist.lastname} is created"
       redirect_to admin_artists_path
     else
-      respond_to do |format|
-        format.html {render action admin_artist_new_path}
-        format.json { render @artist.errors, status: :unprocessable_entity}
-      end
+      flash[:warning] = "Please try again"
+      action admin_artist_new_path
     end
   end
 
@@ -38,6 +42,6 @@ class  Admin::ArtistsController < AdminController
 
   def artist_params
     #,:category_id,
-    params.require(:artist).permit(:firstname,:lastname,:country,:description,:photos)
+    params.require(:artist).permit(:firstname,:lastname,:country,:category_id,:description,:photos)
   end
 end

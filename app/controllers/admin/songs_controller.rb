@@ -11,14 +11,14 @@ class Admin::SongsController < AdminController
     @song = Song.new(song_params)
     @song.album_id = params[:album_id]
     @song.artist_id = params[:artist_id]
-    if @song.save
+    @artist = Album.find(params[:album_id])
+    @song.category_id = @artist.category_id
+    if @song.save!
       flash[:success] = "Song #{@song.name} saved!"
       redirect_to admin_songs_path
     else
-      respond_to do |format|
-        format.html {redirect_to admin_songs_new_path}
-        format.json {render @song.errors, status: :unprocessable_entity}
-      end
+      flash[:danger] = "Please try again"
+      redirect_to admin_songs_new_path
     end
   end
 

@@ -40,6 +40,7 @@ gem 'paperclip'
 
 gem 'rmagick'
 
+gem 'jquery-turbolinks'
 
 gem 'font-awesome-rails'
 
