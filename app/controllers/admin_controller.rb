@@ -1,6 +1,10 @@
 class AdminController < ApplicationController
   #before_action :require_admin
   def index
+    @albums = Album.all
+    @songs = Song.all
+    @aritsts = Artist.all
+    @bands = Band.all
   end
   #
   # def require_admin

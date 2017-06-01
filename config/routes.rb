@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
     get 'songs/new' => 'songs#new_song'
     get 'songs' => 'songs#index_song'
-    get 'songs/:id/edit' => 'songs#edit_song'
+    get 'songs/:id/edit' => 'songs#edit_song' , as: 'songs_edit'
     resources :songs,only:[:index,:create,:edit,:update,:destroy]
     get 'bands/new' => 'bands#new_band'
     get 'bands' => 'bands#index_band'

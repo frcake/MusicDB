@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <ol class="breadcrumb">
         <li class="active">
-          <i class="fa fa-dashboard"></i> Album
+          <i class="fa fa-dashboard"></i> Songs
         </li>
       </ol>
       <%= render 'admin/flash_messages'%>
@@ -12,13 +12,13 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Release Date</th>
-              <th><%= link_to "New" , admin_albums_new_path, class: "pull-right btn btn-success btn-md"%></th>
+              <th>Album</th>
+              <th><%= link_to "New" , admin_songs_new_path, class: "pull-right btn btn-success btn-md"%></th>
             </tr>
           </thead>
           <tbody>
-            <%@albums.each do |album|%>
-              <%= render 'albums/album_row', album: album%>
+            <%@songs.each do |song|%>
+              <%= render 'songs/song_row', song: song%>
             <%end%>
           </tbody>
         </table>

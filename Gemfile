@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'jquery-rails'
 
+gem 'jquery-ui-rails'
+
 gem 'twitter-bootstrap-rails'
 
 # Use Capistrano for deployment

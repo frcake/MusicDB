@@ -35,10 +35,6 @@
             <%= f.text_field :name, class: "form-control" %>
           </div>
           <div class="form-group">
-            <label class= "pull-left" for="example-date-input"><%= f.label :genre %></label>
-            <%= f.text_field :genre, class: "form-control" %>
-          </div>
-          <div class="form-group">
             <label>Choose Artists</label>
             <%= select_tag("artists[]", options_for_select(@artists),:multiple => true, :size => 9 , class: 'select2 form-control') %>
           </div>

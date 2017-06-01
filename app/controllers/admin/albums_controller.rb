@@ -47,8 +47,11 @@ class  Admin::AlbumsController < AdminController
       flash[:success] = "Album updated!"
       redirect_to admin_albums_path
     else
+
       flash[:warning] = "Please try again"
       redirect_to admin_albums_edit_path(@album)
+
+
     end
   end
 
@@ -66,6 +69,6 @@ class  Admin::AlbumsController < AdminController
   end
 
   def album_params
-    params.require(:album).permit(:name,:artist_id,:category_id,:release_date,:photos)
+    params.require(:album).permit(:name,:artist_id,:category_id,:band_id,:release_date,:photos)
   end
 end

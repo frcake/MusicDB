@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require rails-ujs
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
@@ -36,3 +37,17 @@ $( "#dropdown" ).select2({
     $(".listingoptions").tooltip();
   });
 });
+
+
+
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+       yearRange: "1900:2100",
+    });
+  } );
+
+    $( function() {
+    $( document ).tooltip();
+  } );

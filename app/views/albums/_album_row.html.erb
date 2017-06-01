@@ -2,10 +2,10 @@
   <td><%=album.name%></td>
   <td><%=album.release_date%></td>
   <td>
-    <%= link_to admin_albums_edit_path(album),class: "btn btn-primary btn-xs" do %>
+    <%= link_to admin_albums_edit_path(album),class: "btn btn-primary btn-xs pull-right" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>
   <%end%>
-  <%= link_to admin_album_path(album),method: :delete, data: {confirm: 'Are you sure?'},class: "btn btn-danger btn-xs" do %>
+  <%= link_to admin_album_path(album),method: :delete, data: {confirm: 'Are you sure?'},class: "btn btn-danger btn-xs pull-right" do %>
     <span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
 <%end%>
 </td>

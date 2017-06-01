@@ -71,6 +71,12 @@ class Admin::PhotosController < AdminController
     @photo = Photo.find(params[:id])
     @photo.destroy
     redirect_to admin_albums_path
+
+    # respond_to do |format|
+    #   format.json { head :no_content }
+    #   format.js   { render layout: false }
+    # end
+
   end
 
   private

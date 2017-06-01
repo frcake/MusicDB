@@ -2,6 +2,7 @@ class Admin::BandsController < AdminController
   include PhotosHelper
   before_action :set_band, only:[:update,:destroy]
   def index_band
+    @bands = Band.all
   end
 
   def new_band
