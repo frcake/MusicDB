@@ -11,8 +11,11 @@ class Admin::SongsController < AdminController
     @song = Song.new(song_params)
     @song.album_id = params[:album_id]
     @song.artist_id = params[:artist_id]
-    @artist = Album.find(params[:album_id])
-    @song.category_id = @artist.category_id
+    @album = Album.find(params[:album_id])
+    @song.category_id = @album.category_id
+    @song.artist_id = @album.artist_id unless @album.artist_id.nil?
+    @song.band_id = @album.band_id unless @album.band_id.nil?
+
     if @song.save!
       flash[:success] = "Song #{@song.name} saved!"
       redirect_to admin_songs_path

@@ -8,7 +8,6 @@ class  Admin::AlbumsController < AdminController
 
   def new_album
     @album = Album.new
-    @artists_for_select = Artist.artists_mapping
   end
 
   def create
