@@ -35,6 +35,21 @@ class Admin::BandsController < AdminController
     end
   end
 
+  def edit_band
+    @band = Band.find(params[:id])
+    @artists = Artist.all.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
+  end
+
+  def update
+    if @band.update_attributes(band_params)
+      flash[:success] = "Band updated!"
+      redirect_to admin_bands_path
+    else
+      flash[:warning] = "Please try again"
+      redirect_to admin_bands_edit_path(@band)
+    end
+  end
+
   private
 
   def set_band

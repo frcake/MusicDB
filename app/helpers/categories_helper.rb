@@ -14,4 +14,8 @@ module CategoriesHelper
       "#{i.root.name unless !i.parent_id} #{'>' unless !i.parent_id}  #{i.name}"
     }
   end
+
+  def set_category(obj)
+    Category.find(obj)
+  end
 end

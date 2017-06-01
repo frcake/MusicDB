@@ -1,6 +1,14 @@
 <tr>
   <td><%=album.name%></td>
   <td><%=album.release_date%></td>
+  <!--<td><%#=Category.find(album.category_id).name%></td>-->
+  <!-- Helper! -->
+  <td><%=set_category(album.category_id).name%></td>
+  <%if !album.band_id.nil?%>
+    <td><%=song_band(album)%></td>
+  <%else%>
+    <td><%=song_artist(album)%></td>
+  <%end%>
   <td>
     <%= link_to admin_albums_edit_path(album),class: "btn btn-primary btn-xs pull-right" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>
