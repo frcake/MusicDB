@@ -1,0 +1,14 @@
+<tr>
+  <td><%=user.username%></td>
+  <td>
+    <%=user.email%>
+  </td>
+  <td>
+    <%= link_to admin_user_edit_path(user),class: "btn btn-primary btn-xs pull-right" do %>
+      <span class="glyphicon glyphicon-edit"></span>Edit</button>
+  <%end%>
+  <%= link_to admin_user_path(user),method: :delete, data: {confirm: 'Are you sure?'},class: "btn btn-danger btn-xs pull-right" do %>
+    <span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+<%end%>
+</td>
+</tr>

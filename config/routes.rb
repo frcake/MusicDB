@@ -33,6 +33,11 @@ Rails.application.routes.draw do
     get 'bands' => 'bands#index_band'
     get 'bands/:id/edit' => 'bands#edit_band',as: 'bands_edit'
     resources :bands,only:[:index,:create,:edit,:update,:destroy]
+
+    get 'users/new' => 'users#new_user'
+    get 'users' => 'users#index_user'
+    get 'user/:id/edit' => 'users#user_edit',as: 'user_edit'
+    resources :users,only:[:create,:update,:destroy]
   end
 
   resources :artists
