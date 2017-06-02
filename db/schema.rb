@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20170601004058) do
     t.date "release_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
     t.bigint "artist_id"
     t.bigint "band_id"
-    t.bigint "category_id"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["band_id"], name: "index_albums_on_band_id"
     t.index ["category_id"], name: "index_albums_on_category_id"
