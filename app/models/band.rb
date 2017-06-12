@@ -1,5 +1,5 @@
 class Band < ApplicationRecord
-  has_many :albums
+  has_many :albums , dependent: :nullify
   #has_many :songs
   has_many :bandmembers , dependent: :destroy
   has_many :photos,as: :imageable, dependent: :destroy
