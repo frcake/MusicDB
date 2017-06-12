@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :artists
   get 'album/:id' => 'albums#show' , as: 'album'
 
-  get "search", to: "search#search"
   #resources :categories
 
 

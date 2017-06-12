@@ -1,12 +1,7 @@
 class AlbumsController < ApplicationController
 
   def index
-    #@albums = Album.all
-    if params[:term].nil?
-      @albums = Album.all
-    else
-      @albums = Album.search params[:term]
-    end
+    @albums = Album.all
   end
 
   def show
