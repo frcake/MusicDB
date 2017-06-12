@@ -14,4 +14,7 @@
       <%=render 'albums/local_index' , album: album%>
     <%end%>
   </div>
+  <%@bands.each do |band|%>
+    <%=band.name%>
+  <%end%>
 </div>
