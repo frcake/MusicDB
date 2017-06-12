@@ -2,9 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.7
--- Dumped by pg_dump version 9.5.5
--- psql MusicDB_development < MusicDB.sql
+-- Dumped from database version 9.5.6
+-- Dumped by pg_dump version 9.5.6
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
@@ -14,14 +14,14 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -471,6 +471,7 @@ COPY albums (id, name, release_date, created_at, updated_at, category_id, artist
 8	Spine of God	2017-07-06	2017-06-12 13:25:35.250576	2017-06-12 15:24:24.088062	4	\N	26
 7	Welcome to the Sky Valley	2017-10-06	2017-06-12 13:25:18.571559	2017-06-12 15:24:35.418148	4	\N	25
 9	Busse Woods	2017-01-06	2017-06-12 15:38:59.86417	2017-06-12 15:38:59.86417	4	\N	27
+10	The Action is Go!	2017-07-06	2017-06-12 23:32:45.437284	2017-06-12 23:33:21.287616	4	\N	29
 \.
 
 
@@ -478,7 +479,7 @@ COPY albums (id, name, release_date, created_at, updated_at, category_id, artist
 -- Name: albums_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('albums_id_seq', 9, true);
+SELECT pg_catalog.setval('albums_id_seq', 10, true);
 
 
 --
@@ -495,6 +496,18 @@ environment	development	2017-05-25 19:10:21.149403	2017-05-25 19:10:21.149403
 --
 
 COPY artists (id, country, description, created_at, updated_at, category_id, name) FROM stdin;
+6	USA	Frontwoman of the stoner metal band Acid King	2017-06-12 18:17:17.851761	2017-06-12 18:17:17.851761	4	Lori S
+7	USa		2017-06-12 18:18:40.125193	2017-06-12 18:18:40.125193	4	Joey Osbourne
+8	USA		2017-06-12 18:18:53.479562	2017-06-12 18:18:53.479562	4	Mark Lamb
+9	USA	Joshua Michael Homme is an American singer, songwriter, musician, record producer, and actor	2017-06-12 18:19:58.911078	2017-06-12 18:19:58.911078	4	Josh Homme
+10	USA	John Garcia is a vocalist and songwriter. Garcia is best known as the vocalist and founding member of Kyuss	2017-06-12 18:20:27.461896	2017-06-12 18:20:27.461896	4	John Garcia
+11	USA	Brant Bjork (born March 19, 1973) is an American musician, singer, songwriter, multi-instrumentalist, and producer from Palm Desert, California. He is perhaps best known as the drummer and founder of the influential Californian stoner rock band Kyuss.	2017-06-12 18:21:02.829996	2017-06-12 18:21:02.829996	4	Brant Bjork
+12	USA	Kyuss Bass player	2017-06-12 18:22:10.428881	2017-06-12 18:22:10.428881	4	Chris Cockrell
+13	USA		2017-06-12 18:22:40.92485	2017-06-12 18:22:40.92485	4	Dave Wyndorf
+14	usa		2017-06-12 18:22:49.906007	2017-06-12 18:22:49.906007	4	Garrett Sweeny
+15	USA		2017-06-12 18:23:00.830874	2017-06-12 18:23:00.830874	4	Phil Caivano
+16	USA		2017-06-12 18:23:15.801759	2017-06-12 18:23:15.801759	4	Bob Pantella
+17	USA		2017-06-12 18:23:27.620389	2017-06-12 18:23:27.620389	4	Chris Kosnik
 \.
 
 
@@ -502,7 +515,7 @@ COPY artists (id, country, description, created_at, updated_at, category_id, nam
 -- Name: artists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('artists_id_seq', 5, true);
+SELECT pg_catalog.setval('artists_id_seq', 17, true);
 
 
 --
@@ -510,6 +523,18 @@ SELECT pg_catalog.setval('artists_id_seq', 5, true);
 --
 
 COPY bandmembers (id, band_id, artist_id, created_at, updated_at) FROM stdin;
+75	25	9	2017-06-12 18:23:53.261132	2017-06-12 18:23:53.261132
+76	25	10	2017-06-12 18:23:53.270677	2017-06-12 18:23:53.270677
+77	25	11	2017-06-12 18:23:53.277472	2017-06-12 18:23:53.277472
+78	25	12	2017-06-12 18:23:53.283693	2017-06-12 18:23:53.283693
+79	26	13	2017-06-12 18:24:49.630509	2017-06-12 18:24:49.630509
+80	26	14	2017-06-12 18:24:49.645744	2017-06-12 18:24:49.645744
+81	26	15	2017-06-12 18:24:49.652285	2017-06-12 18:24:49.652285
+82	26	16	2017-06-12 18:24:49.660845	2017-06-12 18:24:49.660845
+83	26	17	2017-06-12 18:24:49.668521	2017-06-12 18:24:49.668521
+84	27	6	2017-06-12 18:25:36.029843	2017-06-12 18:25:36.029843
+85	27	7	2017-06-12 18:25:36.038129	2017-06-12 18:25:36.038129
+86	27	8	2017-06-12 18:25:36.04512	2017-06-12 18:25:36.04512
 \.
 
 
@@ -517,7 +542,7 @@ COPY bandmembers (id, band_id, artist_id, created_at, updated_at) FROM stdin;
 -- Name: bandmembers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('bandmembers_id_seq', 74, true);
+SELECT pg_catalog.setval('bandmembers_id_seq', 86, true);
 
 
 --
@@ -528,6 +553,8 @@ COPY bands (id, name, description, created_at, updated_at, category_id) FROM std
 25	Kyuss	\N	2017-06-12 15:23:56.757865	2017-06-12 15:23:56.757865	4
 26	Monster Magnet	\N	2017-06-12 15:24:08.688664	2017-06-12 15:24:08.688664	4
 27	Acid King	\N	2017-06-12 15:38:32.43529	2017-06-12 15:38:32.43529	4
+28	Metallica	\N	2017-06-12 23:23:07.595399	2017-06-12 23:23:07.595399	3
+29	Fu Manchu	\N	2017-06-12 23:30:17.288959	2017-06-12 23:30:17.288959	4
 \.
 
 
@@ -535,7 +562,7 @@ COPY bands (id, name, description, created_at, updated_at, category_id) FROM std
 -- Name: bands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('bands_id_seq', 27, true);
+SELECT pg_catalog.setval('bands_id_seq', 29, true);
 
 
 --
@@ -575,6 +602,21 @@ COPY photos (id, created_at, updated_at, image_file_name, image_content_type, im
 36	2017-06-12 15:24:08.709436	2017-06-12 15:24:08.709436	\N	\N	\N	\N	Band	26
 37	2017-06-12 15:38:32.472898	2017-06-12 15:38:32.472898	\N	\N	\N	\N	Band	27
 38	2017-06-12 15:39:00.132603	2017-06-12 15:39:00.132603	busse_woods.jpg	image/jpeg	186974	2017-06-12 15:38:59.872816	Album	9
+39	2017-06-12 18:17:17.863219	2017-06-12 18:17:17.863219	\N	\N	\N	\N	Artist	6
+40	2017-06-12 18:18:40.150078	2017-06-12 18:18:40.150078	\N	\N	\N	\N	Artist	7
+41	2017-06-12 18:18:53.495693	2017-06-12 18:18:53.495693	\N	\N	\N	\N	Artist	8
+42	2017-06-12 18:19:58.925584	2017-06-12 18:19:58.925584	\N	\N	\N	\N	Artist	9
+43	2017-06-12 18:20:27.474719	2017-06-12 18:20:27.474719	\N	\N	\N	\N	Artist	10
+44	2017-06-12 18:21:02.839473	2017-06-12 18:21:02.839473	\N	\N	\N	\N	Artist	11
+45	2017-06-12 18:22:10.440863	2017-06-12 18:22:10.440863	\N	\N	\N	\N	Artist	12
+46	2017-06-12 18:22:40.941399	2017-06-12 18:22:40.941399	\N	\N	\N	\N	Artist	13
+47	2017-06-12 18:22:49.915797	2017-06-12 18:22:49.915797	\N	\N	\N	\N	Artist	14
+48	2017-06-12 18:23:00.848832	2017-06-12 18:23:00.848832	\N	\N	\N	\N	Artist	15
+49	2017-06-12 18:23:15.810435	2017-06-12 18:23:15.810435	\N	\N	\N	\N	Artist	16
+50	2017-06-12 18:23:27.634877	2017-06-12 18:23:27.634877	\N	\N	\N	\N	Artist	17
+51	2017-06-12 23:23:07.652346	2017-06-12 23:23:07.652346	\N	\N	\N	\N	Band	28
+52	2017-06-12 23:30:17.342643	2017-06-12 23:30:17.342643	\N	\N	\N	\N	Band	29
+54	2017-06-12 23:32:58.383582	2017-06-12 23:32:58.383582	R-1828233-1249353053.jpeg.jpg	image/jpeg	195161	2017-06-12 23:32:58.102994	Album	10
 \.
 
 
@@ -582,7 +624,7 @@ COPY photos (id, created_at, updated_at, image_file_name, image_content_type, im
 -- Name: photos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('photos_id_seq', 38, true);
+SELECT pg_catalog.setval('photos_id_seq', 54, true);
 
 
 --
@@ -627,7 +669,34 @@ COPY schema_migrations (version) FROM stdin;
 --
 
 COPY songs (id, name, artist_id, created_at, updated_at, category_id) FROM stdin;
-6	Black Album	\N	2017-06-12 13:33:34.31224	2017-06-12 13:33:34.31224	\N
+8	Gardenia	\N	2017-06-12 18:26:54.794207	2017-06-12 18:26:54.794207	\N
+9	Asteroid	\N	2017-06-12 18:27:03.050492	2017-06-12 18:27:03.050492	\N
+10	Supa Scoopa and Mighty Scoop	\N	2017-06-12 18:27:16.031429	2017-06-12 18:27:16.031429	\N
+11	100°	\N	2017-06-12 18:27:26.011754	2017-06-12 18:27:26.011754	\N
+12	Space Cadet	\N	2017-06-12 18:27:34.584066	2017-06-12 18:27:34.584066	\N
+13	Demon Cleaner	\N	2017-06-12 18:27:41.754424	2017-06-12 18:27:41.754424	\N
+14	Odyssey	\N	2017-06-12 18:27:49.715557	2017-06-12 18:27:49.715557	\N
+15	Conan Troutman	\N	2017-06-12 18:27:56.34427	2017-06-12 18:27:56.34427	\N
+16	N.O.	\N	2017-06-12 18:28:03.749224	2017-06-12 18:28:03.749224	\N
+17	Whitewater	\N	2017-06-12 18:28:10.983364	2017-06-12 18:28:10.983364	\N
+18	Electric Machine	\N	2017-06-12 18:28:34.984785	2017-06-12 18:28:34.984785	\N
+19	Silent Circle	\N	2017-06-12 18:28:43.543255	2017-06-12 18:28:43.543255	\N
+20	Drive Fast, Take Chances	\N	2017-06-12 18:28:55.275	2017-06-12 18:28:55.275	\N
+21	39 Lashes	\N	2017-06-12 18:29:03.406449	2017-06-12 18:29:03.406449	\N
+22	Carve the 5	\N	2017-06-12 18:29:10.488614	2017-06-12 18:29:10.488614	\N
+23	Busse Woods	\N	2017-06-12 18:29:18.582611	2017-06-12 18:29:18.582611	\N
+24	Motorhead	\N	2017-06-12 18:29:27.804968	2017-06-12 18:29:27.804968	\N
+25	Not Fragile	\N	2017-06-12 18:29:35.184932	2017-06-12 18:29:35.184932	\N
+26	Pill Shovel	\N	2017-06-12 18:30:04.501465	2017-06-12 18:30:04.501465	\N
+27	Medicine	\N	2017-06-12 18:30:11.576129	2017-06-12 18:30:11.576129	\N
+28	Nod Scene	\N	2017-06-12 18:30:18.90654	2017-06-12 18:30:18.90654	\N
+29	Black Mastermind	\N	2017-06-12 18:30:26.665361	2017-06-12 18:30:26.665361	\N
+30	Zodiac Lung	\N	2017-06-12 18:30:34.969694	2017-06-12 18:30:34.969694	\N
+31	Spine of God	\N	2017-06-12 18:30:41.841993	2017-06-12 18:30:41.841993	\N
+32	Snake Dance	\N	2017-06-12 18:30:48.998768	2017-06-12 18:30:48.998768	\N
+33	Sin's a Good Man's Brother	\N	2017-06-12 18:30:55.892124	2017-06-12 18:30:55.892124	\N
+34	Ozium	\N	2017-06-12 18:31:03.798496	2017-06-12 18:31:03.798496	\N
+35	Ozium [Demo]	\N	2017-06-12 18:31:20.329205	2017-06-12 18:31:20.329205	\N
 \.
 
 
@@ -635,7 +704,7 @@ COPY songs (id, name, artist_id, created_at, updated_at, category_id) FROM stdin
 -- Name: songs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('songs_id_seq', 7, true);
+SELECT pg_catalog.setval('songs_id_seq', 35, true);
 
 
 --
@@ -643,8 +712,34 @@ SELECT pg_catalog.setval('songs_id_seq', 7, true);
 --
 
 COPY tracks (id, album_id, song_id, created_at, updated_at) FROM stdin;
-14	8	6	2017-06-12 14:19:11.183836	2017-06-12 14:19:11.183836
-15	7	6	2017-06-12 14:19:11.19176	2017-06-12 14:19:11.19176
+16	7	8	2017-06-12 18:26:54.839012	2017-06-12 18:26:54.839012
+17	7	9	2017-06-12 18:27:03.069659	2017-06-12 18:27:03.069659
+18	7	10	2017-06-12 18:27:16.045175	2017-06-12 18:27:16.045175
+19	7	11	2017-06-12 18:27:26.026827	2017-06-12 18:27:26.026827
+20	7	12	2017-06-12 18:27:34.606811	2017-06-12 18:27:34.606811
+21	7	13	2017-06-12 18:27:41.766392	2017-06-12 18:27:41.766392
+22	7	14	2017-06-12 18:27:49.729938	2017-06-12 18:27:49.729938
+23	7	15	2017-06-12 18:27:56.36747	2017-06-12 18:27:56.36747
+24	7	16	2017-06-12 18:28:03.776919	2017-06-12 18:28:03.776919
+25	7	17	2017-06-12 18:28:11.002894	2017-06-12 18:28:11.002894
+26	9	18	2017-06-12 18:28:34.998299	2017-06-12 18:28:34.998299
+27	9	19	2017-06-12 18:28:43.553697	2017-06-12 18:28:43.553697
+28	9	20	2017-06-12 18:28:55.294328	2017-06-12 18:28:55.294328
+29	9	21	2017-06-12 18:29:03.428073	2017-06-12 18:29:03.428073
+30	9	22	2017-06-12 18:29:10.501479	2017-06-12 18:29:10.501479
+31	9	23	2017-06-12 18:29:18.609115	2017-06-12 18:29:18.609115
+32	9	24	2017-06-12 18:29:27.823519	2017-06-12 18:29:27.823519
+33	9	25	2017-06-12 18:29:35.19681	2017-06-12 18:29:35.19681
+34	8	26	2017-06-12 18:30:04.515572	2017-06-12 18:30:04.515572
+35	8	27	2017-06-12 18:30:11.598499	2017-06-12 18:30:11.598499
+36	8	28	2017-06-12 18:30:18.928236	2017-06-12 18:30:18.928236
+37	8	29	2017-06-12 18:30:26.675892	2017-06-12 18:30:26.675892
+38	8	30	2017-06-12 18:30:34.987425	2017-06-12 18:30:34.987425
+39	8	31	2017-06-12 18:30:41.85592	2017-06-12 18:30:41.85592
+40	8	32	2017-06-12 18:30:49.019396	2017-06-12 18:30:49.019396
+41	8	33	2017-06-12 18:30:55.908359	2017-06-12 18:30:55.908359
+42	8	34	2017-06-12 18:31:03.811612	2017-06-12 18:31:03.811612
+43	8	35	2017-06-12 18:31:20.340652	2017-06-12 18:31:20.340652
 \.
 
 
@@ -652,7 +747,7 @@ COPY tracks (id, album_id, song_id, created_at, updated_at) FROM stdin;
 -- Name: tracks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: frcake
 --
 
-SELECT pg_catalog.setval('tracks_id_seq', 15, true);
+SELECT pg_catalog.setval('tracks_id_seq', 43, true);
 
 
 --
@@ -925,3 +1020,4 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
+
