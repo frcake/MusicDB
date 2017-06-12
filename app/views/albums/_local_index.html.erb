@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <%Album.find(album.id).photos.each do |photo|%>
+      <%= link_to album_path(album) do %>
+        <%=image_tag photo.image , class:'imagesize'%>
+      <%end%>
+    <%end%>
+    <div class="caption">
+      <h3><%=album.name%></h3>
+      <!-- <p>...</p> -->
+      <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+    </div>
+  </div>
+</div>

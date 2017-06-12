@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%@album.photos.each do |photo|%>
+        <%=image_tag photo.image , class:'imagesize'%>
+      <%end%>
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h3><%=@album.name%>
+            <div class="pull-right">
+              <%= Category.find(@album.category_id).name%>
+            </div>
+          </h3>
+        </li>
+        <li  class="list-group-item">
+          <ul class="list-group" >
+            <%@album.songs.each do |song|%>
+              <li class="list-group-item">
+                <%=song.name%>
+              </li>
+            <%end%>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row"%>
+    <div class="col-md-6">
+      <ul class="list-group">
+        <%@album.band.artists.each do |artist|%>
+          <%=link_to artist_path(artist) do %>
+            <li class="list-group-item">
+              <%=artist.name%>
+            </li>
+          <%end%>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</div>

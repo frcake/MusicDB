@@ -7,19 +7,11 @@
     <%=link_to 'Admin Dashboard',admin_dashboard_path%>
   </div>
   <div class="row">
-    <% all_albums.each do |album|%>
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <%album.photos.each do |photo|%>
-            <%=image_tag photo.image(:medium)%>
-          <%end%>
-          <div class="caption">
-            <h3><%=album.name%></h3>
-            <!-- <p>...</p> -->
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-          </div>
-        </div>
-      </div>
+    <%=render 'search/form'%>
+  </div>
+  <div class="row">
+    <% @albums.each do |album|%>
+      <%=render 'albums/local_index' , album: album%>
     <%end%>
   </div>
 </div>

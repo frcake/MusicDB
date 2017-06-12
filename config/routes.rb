@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root 'application#index'
 
   get 'sessions/new'
-
   resources :users
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
@@ -43,7 +42,10 @@ Rails.application.routes.draw do
   end
 
   resources :artists
+  get 'album/:id' => 'albums#show' , as: 'album'
+
+  get "search", to: "search#search"
   #resources :categories
-  #resource :albums
+
 
 end

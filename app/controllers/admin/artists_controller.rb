@@ -4,7 +4,7 @@ class  Admin::ArtistsController < AdminController
   before_action :find_artist , only:[:update,:delete]
 
   def index_artist
-   @artists = Artist.all
+    @artists = Artist.all
   end
 
   def new_artist
@@ -30,15 +30,16 @@ class  Admin::ArtistsController < AdminController
     end
   end
 
-  def edit
+  def edit_artist
+    @artist = Artist.find(params[:id])
   end
 
   def update
   end
 
   def destroy
-  @artist = Artist.find(params[:id])
-   @artist.destroy
+    @artist = Artist.find(params[:id])
+    @artist.destroy
     redirect_to admin_artists_path
 
   end

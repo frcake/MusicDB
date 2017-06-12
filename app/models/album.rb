@@ -1,4 +1,7 @@
+require 'elasticsearch/model'
 class Album < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   has_many :tracks , dependent: :destroy
   has_many :songs , through: :tracks
   has_many :photos,as: :imageable, dependent: :destroy
@@ -10,4 +13,18 @@ class Album < ApplicationRecord
   validates :name , presence: true
   #validates :release_date, presence: true
 
+  # mapping do
+  #   indexes :name , :type => "string", analyzer:   "index_ngram_analyzer", search_analyzer: "search_ngram_analyzer"
+  # end
+
 end
+begin
+  Album.__elasticsearch__.client.indices.delete index: Album.index_name
+rescue
+  nil
+end
+
+Album.__elasticsearch__.client.indices.create \
+ index: Album.index_name,
+body: { settings: Album.settings.to_hash,mappings: Album.mappings.to_hash}
+Album.import force:true

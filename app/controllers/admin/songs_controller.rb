@@ -12,21 +12,21 @@ class Admin::SongsController < AdminController
   end
 
 
-    # @song = Song.new(song_params)
-    # @album = Album.find(song_params[:album_id])
-    # @song.album_id = song_params[:album_id]
-    # @song.category_id = @album.category_id
-    # @song.artist_id = @album.artist_id unless @album.artist_id.nil?
-    # @song.band_id = @album.band_id unless @album.band_id.nil?
-def create
- @song = Song.new(song_params)
+  # @song = Song.new(song_params)
+  # @album = Album.find(song_params[:album_id])
+  # @song.album_id = song_params[:album_id]
+  # @song.category_id = @album.category_id
+  # @song.artist_id = @album.artist_id unless @album.artist_id.nil?
+  # @song.band_id = @album.band_id unless @album.band_id.nil?
+  def create
+    @song = Song.new(song_params)
 
     if @song.save!
-     if params[:song][:albums]
-      params[:song][:albums].each do |album|
-       @tracks = @song.tracks.build(album_id: album)
-       @tracks.save
-      end
+      if params[:song][:albums]
+        params[:song][:albums].each do |album|
+          @tracks = @song.tracks.build(album_id: album)
+          @tracks.save
+        end
       end
       flash[:success] = "Song #{@song.name} saved!"
       redirect_to admin_songs_path
@@ -44,30 +44,30 @@ def create
 
     @array = []
     if @count.size > 1
-     @count.each do |album|
-      @album = Album.find(album.album_id).id
-      @array << @album
+      @count.each do |album|
+        @album = Album.find(album.album_id).id
+        @array << @album
 
-     end
+      end
     elsif @count.size == 1
-     @count = Track.find_by(song_id: @song.id)
-     @album = Album.find(@count.album_id).id
-     @array << @album
+      @count = Track.find_by(song_id: @song.id)
+      @album = Album.find(@count.album_id).id
+      @array << @album
     else
-     @array=[""]
+      @array=[""]
     end
   end
 
   def update
     if @song.update_attributes(song_params)
-     if params[:song][:albums]
-       params[:song][:albums].each do |album|
-         @tracks = @song.tracks.build(album_id: album) #unless album.empty?
-         @tracks.save #unless album.empty?
-        ## byebug
-       end
-     end
-      flash[:success] = "Album updated!"
+      if params[:song][:albums]
+        params[:song][:albums].each do |album|
+          @tracks = @song.tracks.build(album_id: album) #unless album.empty?
+          @tracks.save #unless album.empty?
+          ## byebug
+        end
+      end
+      flash[:success] = "Song updated!"
       redirect_to admin_songs_path
     else
       flash[:warning] = "Please try again"
@@ -77,7 +77,7 @@ def create
 
   def destroy
     @song.destroy
-    flash[:success] = "Album deleted!"
+    flash[:success] = "Song deleted!"
     redirect_to admin_songs_path
   end
 
