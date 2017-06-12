@@ -19,13 +19,13 @@
 # ])
 #
 #
-# artist = Artist.create([{firstname:    'Brant'    ,    lastname:    'Bjork'    ,country:    'USA',description:    'Stoner Drummer of legendary band Kyuss'    },
-#   {firstname:    'John'        ,        lastname:    'Garcia'    ,    country:    'USA'    ,    description:    'desc'    },
-#   {firstname:    'Josh'        ,        lastname:    'Homme'    ,    country:    'USA'    ,    description:    'desc'    },
-#   {firstname:    'Chris'        ,        lastname:    'Cockrell'    ,    country:    'USA'    ,    description:    'desc'    },
-#   {firstname:    'Joe'        ,        lastname:    'Calandra'    ,    country:    'USA'    ,    description:    'desc'    },
-#   {firstname:    'Jon'        ,        lastname:    'Kleiman'    ,    country:    'USA'    ,    description:    'desc'    },
-#   {firstname:    'Michael'        ,        lastname:    'Wildwood'    ,    country:    'USA'    ,    description:    'desc'    }
+# artist = Artist.create([{name:    'Brant'    ,    country:    'USA',description:    'Stoner Drummer of legendary band Kyuss'    },
+#   {name:    'John'        ,            country:    'USA'    ,    description:    'desc'    },
+#   {name:    'Josh'        ,            country:    'USA'    ,    description:    'desc'    },
+#   {name:    'Chris'        ,              country:    'USA'    ,    description:    'desc'    },
+#   {name:    'Joe'        ,             country:    'USA'    ,    description:    'desc'    },
+#   {name:    'Jon'        ,             country:    'USA'    ,    description:    'desc'    },
+#   {name:    'Michael'        ,              country:    'USA'    ,    description:    'desc'    }
 # ])
 #
 #

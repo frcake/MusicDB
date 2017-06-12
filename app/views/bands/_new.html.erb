@@ -37,7 +37,7 @@
           <div class="form-group">
             <label>Choose Artists</label>
             <%#= select_tag("artists[]", options_for_select(@artists,@array),:multiple => true, :size => 9 , class: 'select2 form-control') %>
-            <%=f.select(:artists, options_from_collection_for_select(Artist.all, :id,:firstname, @array),{}, {multiple: true , class: 'form-control select2'}) %>
+            <%=f.select(:artists, options_from_collection_for_select(Artist.all, :id,:name, @array),{}, {multiple: true , class: 'form-control select2'}) %>
             <!-- {:prompt => @select_value, :selected => @array.company_status_id.to_i}-->
             <%#= f.select(:bandmembers, artists_for_select, {include_blank:true , include_hidden:false}  ,{multiple: true , class: 'select2 form-control'} ) %>
           </div>

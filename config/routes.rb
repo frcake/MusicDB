@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resources :categories , only:[:index,:create,:edit,:update,:delete]
 
     get 'artists/new' => 'artists#new_artist'
-    resources :artists,only:[:index,:create,:edit,:update,:delete]
+    get 'artists' => 'artists#index_artist'
+    get 'artists/:id/edit' => 'artists#edit_artist' , as: 'artists_edit'
+    resources :artists,only:[:create,:update,:destroy]
 
     get 'albums/new' => 'albums#new_album'
     get 'albums' => 'albums#index_album'

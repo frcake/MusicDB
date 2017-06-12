@@ -7,7 +7,7 @@ class Admin::BandsController < AdminController
 
   def new_band
     @band = Band.new
-    @artists = Artist.all.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
+    @artists = Artist.all.map{|x| ["#{x.name}" ,"#{x.id}"]}
 
   end
 
@@ -39,7 +39,7 @@ class Admin::BandsController < AdminController
 
   def edit_band
    @band = Band.find(params[:id])
-   @artists = Artist.all.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
+   @artists = Artist.all.map{|x| ["#{x.name}" ,"#{x.id}"]}
 
    @count = Bandmember.where(band_id: @band.id)
    #byebug
@@ -59,7 +59,7 @@ class Admin::BandsController < AdminController
     #@array = [""]
     #byebug
    end
-   #@selected_artists = @array.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
+   #@selected_artists = @array.map{|x| ["#{x.name}" ,"#{x.id}"]}
 
 
 

@@ -8,7 +8,7 @@ class Admin::SongsController < AdminController
   def new_song
     @song = Song.new
     @albums = Album.all.map{|x| [x.name ,x.id]}
-    @artists = Artist.all.map{|x| ["#{x.firstname} #{x.lastname}" ,"#{x.id}"]}
+    @artists = Artist.all.map{|x| ["#{x.name}" ,"#{x.id}"]}
   end
 
 

@@ -1,0 +1,13 @@
+<tr>
+  <td><%=artist.name%></td>
+  <!--<td><%#=Category.find(artist.category_id).name%></td>-->
+  <!-- Helper! -->
+  <td>
+    <%= link_to admin_artists_edit_path(artist),class: "btn btn-primary btn-xs pull-right" do %>
+      <span class="glyphicon glyphicon-edit"></span>Edit</button>
+  <%end%>
+  <%= link_to admin_artist_path(artist),method: :delete, data: {confirm: 'Are you sure?'},class: "btn btn-danger btn-xs pull-right" do %>
+    <span class="glyphicon glyphicon-remove-circle"></span> Delete</button>
+<%end%>
+</td>
+</tr>

@@ -1,11 +1,11 @@
 module ArtistsHelper
   def artists_for_select
-    Artist.all.collect {|u| ["#{u.firstname} #{u.lastname}", u.id]}
+    Artist.all.collect {|u| ["#{u.name}", u.id]}
   end
 
   def song_artist(song)
-    firstname = Artist.find(song.artist_id).firstname unless song.artist_id.nil?
-    lastname = Artist.find(song.artist_id).lastname unless song.artist_id.nil?
-    return "#{firstname} #{lastname}"
+    name = Artist.find(song.artist_id).name unless song.artist_id.nil?
+    
+    return "#{name}"
   end
 end
