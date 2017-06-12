@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601004058) do
+ActiveRecord::Schema.define(version: 20170612132710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,16 +83,21 @@ ActiveRecord::Schema.define(version: 20170601004058) do
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
-    t.bigint "album_id"
     t.bigint "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
-    t.bigint "band_id"
-    t.index ["album_id"], name: "index_songs_on_album_id"
     t.index ["artist_id"], name: "index_songs_on_artist_id"
-    t.index ["band_id"], name: "index_songs_on_band_id"
     t.index ["category_id"], name: "index_songs_on_category_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_tracks_on_album_id"
+    t.index ["song_id"], name: "index_tracks_on_song_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,6 +117,5 @@ ActiveRecord::Schema.define(version: 20170601004058) do
   add_foreign_key "albums", "categories"
   add_foreign_key "artists", "categories"
   add_foreign_key "bands", "categories"
-  add_foreign_key "songs", "bands"
   add_foreign_key "songs", "categories"
 end

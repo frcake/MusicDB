@@ -79,6 +79,11 @@ class Admin::BandsController < AdminController
     end
   end
 
+  def destroy
+   @band.destroy
+   redirect_to admin_bands_path
+  end
+
   private
 
   def set_band

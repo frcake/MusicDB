@@ -1,7 +1,9 @@
 <tr>
   <td><%=song.name%></td>
   <td>
-    <%=song_album(song)%>
+    <% song_album(song).each do |album|%>
+      <%=album.name%>
+    <%end%>
   </td>
   <td>
     <%= link_to admin_songs_edit_path(song),class: "btn btn-primary btn-xs pull-right" do %>

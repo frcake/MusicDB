@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
-  has_many :songs
+  has_many :tracks , dependent: :destroy
+  has_many :songs , through: :tracks
   has_many :photos,as: :imageable, dependent: :destroy
   belongs_to :band, optional: true
   belongs_to :artist, optional: true
