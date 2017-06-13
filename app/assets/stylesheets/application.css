@@ -19,12 +19,19 @@
  */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,500,300,700&subset=greek,latin);
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 html, body {
   font-family: 'Roboto' !important;
 }
 
 body {
   padding-top: 70px;
+}
+
+h1 {
+  font-family: 'Righteous', cursive;
+  font-size: 100px;
+  color: #1FD476;
 }
 
 #main-nav {
@@ -44,4 +51,8 @@ body {
 
 .list-group-item {
   border: none;
+}
+
+#searchdiv {
+  padding: 50px;
 }

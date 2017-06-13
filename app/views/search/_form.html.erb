@@ -1,6 +1,12 @@
-<%= form_for :term, url: root_path, method: :get do |form| %>
-  <p>
-    <%= text_field_tag :term, params[:term] %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-<% end %>
+<div class="container">
+  <div class="row" id="searchdiv">
+    <%= form_for :term, url: root_path, method: :get do |form| %>
+      <div class="col-md-6 col-md-offset-3">
+        <%= text_field_tag :term, params[:term] , class:"form-control"%>
+      </div>
+      <div class="col-md-2">
+        <%= submit_tag "Search", name: nil , class: "btn btn-default"%>
+      </div>
+    <% end %>
+  </div>
+</div>
