@@ -56,7 +56,7 @@ gem 'elasticsearch'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'select2-rails'
-
+gem 'discogs-wrapper'
 gem 'searchkick'
 
 group :development, :test do
