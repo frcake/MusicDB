@@ -1,0 +1,2 @@
+module DiscogsHelper
+end

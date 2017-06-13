@@ -47,4 +47,19 @@ Rails.application.routes.draw do
   #resources :categories
 
 
+  get 'discogs/:id' => 'discogs#show', :constraints  => {:id => /.+\.\w{3,4}/}
+
+  resources :discogs do
+    collection do
+      get :authenticate
+      get :callback
+      get :whoami
+      get :add_want
+      get :edit_want
+      get :remove_want
+    end
+  end
+
+
+
 end

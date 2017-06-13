@@ -1,0 +1,42 @@
+<ul>
+  <li>Use <a href="http://127.0.0.1:3000/">127.0.0.1</a> <strong>not</strong> localhost to prevent session issues</li>
+  <li>Use active_record_store for session/cookies</li>
+  <li>Create an app on Discogs.com via your developer settings</li>
+  <li>Add your "Consumer Key" and "Consumer Secret" into /config/environment_variables.yml</li>
+</ul>
+<% if @discogs.authenticated? %>
+  <ul>
+    <li><a href="/tests/R-2795264-1301352416.jpeg">View image</a></li>
+    <li><a href="/tests/whoami">User information</a></li>
+    <li><a href="/tests/add_want">Add 'Medieval Steel' to wantlist</a></li>
+    <li><a href="/tests/edit_want">Edit 'Medieval Steel' in wantlist</a></li>
+    <li><a href="/tests/remove_want">Remove 'Medieval Steel' from wantlist</a></li>
+  </ul>
+  <%=@result.results.first.title%>
+  <br />
+  <%=@artist.name%>
+  <br />
+  <%=@artist.members.count%>
+  <br />
+  <%=@artist.profile%>
+  <br />
+  <br />
+  <br />
+  <br />
+  <%@releases.releases.each do |rel|%>
+    <%=rel.title%>
+    <%=@discogs.get_release(rel.id.to_s)%>
+    <br />
+  <%end%>
+  <!-- <ul>
+    <%#@array.each do |release|%>
+      <li>
+        <%#=release.title%>
+        <ul>
+        </ul>
+      </li>
+    <%#end%>
+  </ul> -->
+<% else %>
+  <a href="/discogs/authenticate">Authenticate Discogs.com account</a>
+<% end %>
