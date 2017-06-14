@@ -29,6 +29,11 @@
   <div class="row"%>
     <div class="col-md-6">
       <ul class="list-group">
+        <li>
+          <%= link_to band_path(@album.band) do %>
+            <%=@album.band.name%>
+          <%end%>
+        </li>
         <%@album.band.artists.each do |artist|%>
           <%=link_to artist_path(artist) do %>
             <li class="list-group-item">
