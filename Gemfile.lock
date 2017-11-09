@@ -98,6 +98,12 @@ GEM
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
+    ember-cli-rails (0.10.0)
+      cocaine (~> 0.5.8)
+      ember-cli-rails-assets (~> 0.6.2)
+      html_page (~> 0.1.0)
+      railties (>= 3.2)
+    ember-cli-rails-assets (0.6.2)
     erubi (1.6.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -111,6 +117,7 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.5)
+    html_page (0.1.0)
     httparty (0.15.5)
       multi_xml (>= 0.5.2)
     i18n (0.8.4)
@@ -269,6 +276,7 @@ DEPENDENCIES
   elasticsearch
   elasticsearch-model
   elasticsearch-rails
+  ember-cli-rails
   font-awesome-rails
   font-awesome-sass
   jbuilder (~> 2.5)
