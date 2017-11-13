@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 h1 {
@@ -56,4 +56,10 @@ h1 {
 
 #searchdiv {
   padding: 50px;
+}
+
+/* no table rows */
+
+.table th, .table td {
+  border-top: none !important;
 }

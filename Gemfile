@@ -53,13 +53,20 @@ gem 'bootstrap-sass'
 gem 'awesome_nested_set', '~> 3.1'
 
 gem 'elasticsearch'
+
 gem 'elasticsearch-model'
+
 gem 'elasticsearch-rails'
+
 gem 'select2-rails'
+
 gem 'discogs-wrapper'
+
 gem 'searchkick'
 
 gem 'ember-cli-rails'
+
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

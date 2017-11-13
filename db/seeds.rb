@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
 #
 # album = Album.create([
 #   {name:    'Welcome to the Sky Valley'    }    ,    {    release_date:    '11/12/1999'    },
@@ -33,3 +31,13 @@
 #   {name:    'Monster Magnet'        ,        description:    'Psychedelic Rock Band'    },
 #   {name:    'Acid King'        ,        description:    'Doom Stoner Band'    }
 # ])
+# require 'faker'
+#
+# 200.times do
+#   user = User.new
+#   user.username = Faker::Name.unique.first_name
+#   user.email = Faker::Internet.safe_email(user.username)
+#   user.password = '123123'
+#   user.password_confirmation = '123123'
+#   user.save!
+# end

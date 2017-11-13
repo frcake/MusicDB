@@ -24,14 +24,13 @@ class FriendshipsController < ApplicationController
   def create
     # @friendship = Friendship.new(friendship_params)
     @friendship = current_user.friendships.build(friend_id: params[:friend_id])
-    respond_to do |_format|
-      if @friendship.save
-        flash[:notice] = 'Added friend'
-        redirect_to users_path
-      else
-        flash[:error] = 'Unable to add friend'
-        redirect_to users_path
-      end
+
+    if @friendship.save
+      flash[:notice] = 'Added friend'
+      redirect_to users_path
+    else
+      flash[:error] = 'Unable to add friend'
+      redirect_to users_path
     end
   end
 
@@ -54,10 +53,8 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = current_user.friendships.find(params[:id])
     @friendship.destroy
-    respond_to do |_format|
-      flash[:notice] = 'Friend removed!'
-      redirect_to current_user
-    end
+    flash[:notice] = 'Friend removed!'
+    redirect_to current_user
   end
 
   private
@@ -69,6 +66,6 @@ class FriendshipsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def friendship_params
-    params.require(:friendship).permit(:user_id, :friend_id, :create, :destroy)
+    params.require(:friendship).permit(:user_id, :friend_id)
   end
 end
