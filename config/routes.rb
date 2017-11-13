@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :record_libraries
   resources :friendships
   root 'application#index'
 

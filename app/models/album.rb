@@ -7,6 +7,9 @@ class Album < ApplicationRecord
   belongs_to :artist, optional: true
   belongs_to :category, optional: true
 
+  has_many :record_libraries
+  has_many :users, through: :record_libraries
+
   # validation
   validates :name, presence: true
   # validates :release_date, presence: true

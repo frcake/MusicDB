@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+  has_many :record_libraries
+  has_many :albums, through: :record_libraries
+
   before_save { self.email = email.downcase }
   validates :username, presence: true, length: { maximum: 50 }
 

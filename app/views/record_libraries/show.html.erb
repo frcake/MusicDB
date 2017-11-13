@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @record_library.user %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @record_library.album %>
+</p>
+
+<%= link_to 'Edit', edit_record_library_path(@record_library) %> |
+<%= link_to 'Back', record_libraries_path %>

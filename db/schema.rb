@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171113182715) do
+ActiveRecord::Schema.define(version: 20171113200115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,15 @@ ActiveRecord::Schema.define(version: 20171113182715) do
     t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
   end
 
+  create_table "record_libraries", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "album_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_record_libraries_on_album_id"
+    t.index ["user_id"], name: "index_record_libraries_on_user_id"
+  end
+
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.bigint "artist_id"
@@ -123,5 +132,7 @@ ActiveRecord::Schema.define(version: 20171113182715) do
   add_foreign_key "albums", "categories"
   add_foreign_key "artists", "categories"
   add_foreign_key "bands", "categories"
+  add_foreign_key "record_libraries", "albums"
+  add_foreign_key "record_libraries", "users"
   add_foreign_key "songs", "categories"
 end
