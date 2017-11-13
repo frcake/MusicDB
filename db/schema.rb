@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612144313) do
+ActiveRecord::Schema.define(version: 20171113175455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 20170612144313) do
     t.index ["lft"], name: "index_categories_on_lft"
     t.index ["parent_id"], name: "index_categories_on_parent_id"
     t.index ["rgt"], name: "index_categories_on_rgt"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.string "create"
+    t.string "destroy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "photos", force: :cascade do |t|

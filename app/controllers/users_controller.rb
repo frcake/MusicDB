@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
@@ -9,14 +8,14 @@ class UsersController < ApplicationController
   end
 
   def index
-
+    @users = User.all
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to MusicDB!"
+      flash[:success] = 'Welcome to MusicDB!'
       redirect_to @user
 
     else
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user=User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
@@ -38,10 +37,9 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
 
   def user_params
-    params.require(:user).permit(:username,:email,:password,:password_confirmation,:is_admin,:remember_digest)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :is_admin, :remember_digest)
   end
 end

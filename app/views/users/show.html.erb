@@ -6,6 +6,15 @@
     <div class="col-md-6">
       <h3>Username:<%=@user.username%></h3>
     </div>
+    <h3>Friends</h3>
+    <%@user.friendships.each do |friend|%>
+      <%=friendship.friend.username%>
+      <%=link_to "remove", friendship , :method => :delete%>
+    <%end%>
+    <h3>Friended by</h3>
+    <% @user.inverse_friends.each do |inverse_friend|%>
+      <%= inverse_friend.username%>
+    <%end%>
   <%else%>
     <h3>Please log in</h3>
     <%=link_to 'Login',login_path%>
