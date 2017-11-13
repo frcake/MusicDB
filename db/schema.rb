@@ -21,10 +21,6 @@ ActiveRecord::Schema.define(version: 20171113200115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
-    t.bigint "artist_id"
-    t.bigint "band_id"
-    t.index ["artist_id"], name: "index_albums_on_artist_id"
-    t.index ["band_id"], name: "index_albums_on_band_id"
     t.index ["category_id"], name: "index_albums_on_category_id"
   end
 
@@ -123,12 +119,9 @@ ActiveRecord::Schema.define(version: 20171113200115) do
     t.datetime "updated_at", null: false
     t.string "password_digest", default: "", null: false
     t.string "password_confirmation", default: "", null: false
-    t.string "remember_digest"
     t.string "remember_token"
   end
 
-  add_foreign_key "albums", "artists"
-  add_foreign_key "albums", "bands"
   add_foreign_key "albums", "categories"
   add_foreign_key "artists", "categories"
   add_foreign_key "bands", "categories"
