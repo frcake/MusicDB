@@ -48,6 +48,9 @@
         </table>
       </div>
     </div>
+    <%@user.albums.each do |album|%>
+      <%= render 'albums/local_index', album: album%>
+    <%end%>
   <%else%>
     <h3>Please log in</h3>
     <%=link_to 'Login',login_path%>
