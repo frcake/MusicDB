@@ -8,7 +8,14 @@
     <div class="caption">
       <h3><%=album.name%></h3>
       <!-- <p>...</p> -->
-      <!--    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+      <!-- <p><a href="#" class="btn btn-primary" role="button">Add to Library</a> <a href="#" class="btn btn-default glyphicon glyphicon-heart" role="button"></a></p> -->
+      <% if current_user%>
+        <%if !current_user.albums.collect(&:id).include?(album.id)%>
+          <%=link_to 'Add to library',record_libraries_path(:album_id => album), :class => 'btn btn-primary' , :method => :post%>
+        <%else%>
+          <%=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: album.id), :class => 'btn btn-primary' , :method => :delete%>
+        <%end%>
+      <%end%>
     </div>
   </div>
 </div>
