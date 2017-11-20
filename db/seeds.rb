@@ -33,11 +33,11 @@
 # ])
 # require 'faker'
 #
-# 200.times do
-#   user = User.new
-#   user.username = Faker::Name.unique.first_name
-#   user.email = Faker::Internet.safe_email(user.username)
-#   user.password = '123123'
-#   user.password_confirmation = '123123'
-#   user.save!
-# end
+100.times do
+  user = User.new
+  user.username = Faker::Name.unique.first_name
+  user.email = Faker::Internet.safe_email(user.username)
+  user.password = '123123'
+  user.password_confirmation = '123123'
+  user.save!
+end
