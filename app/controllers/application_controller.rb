@@ -10,10 +10,8 @@ class ApplicationController < ActionController::Base
 
   def index
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.all
+      @albums = Album.all.paginate(page: params[:page] || 1, per_page: 3)
       @bands = Band.all
-      # @artist = Artist.all
-
     else
       @albums = Album.search params[:term], fields: [:name], match: :word_start
       @bands = Band.search params[:term], fields: [:name], match: :word_start

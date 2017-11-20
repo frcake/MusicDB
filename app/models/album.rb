@@ -13,5 +13,7 @@ class Album < ApplicationRecord
   # validation
   validates :name, presence: true
   # validates :release_date, presence: true
+
+  # paginates_per 25
 end
-Album.reindex
+# Album.reindex

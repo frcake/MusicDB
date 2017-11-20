@@ -7,4 +7,4 @@ class Band < ApplicationRecord
   has_many :artists, through: :bandmembers
   belongs_to :category, optional: true
 end
-Band.reindex
+# Band.reindex
