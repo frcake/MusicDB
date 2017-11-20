@@ -10,14 +10,13 @@ class ApplicationController < ActionController::Base
 
   def index
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.all
+      @albums = Album.includes(:photos)
       @bands = Band.all
-      # @artist = Artist.all
-
     else
-      @albums = Album.search params[:term], fields: [:name], match: :word_start
+      @albums = Album.includes(:photos).search params[:term], fields: [:name], match: :word_start
       @bands = Band.search params[:term], fields: [:name], match: :word_start
     end
+
     #### rock , metal , punk ,Hip Hop,country,pop,Stoner Rock,'Electronic Death Metal,Blues
     # # ####Api ScrapScript#############
     #
