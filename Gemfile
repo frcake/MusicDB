@@ -17,7 +17,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+ gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -35,6 +35,9 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'twitter-bootstrap-rails'
+
+gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -67,6 +70,12 @@ gem 'searchkick'
 gem 'ember-cli-rails'
 
 gem 'faker'
+
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'bootstrap-will_paginate'
+
+gem 'mailboxer'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

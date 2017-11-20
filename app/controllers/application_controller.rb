@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def index
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.includes(:photos)
+      @albums = Album.all.includes(:photos).paginate(page: params[:page] || 1, per_page: 3)
       @bands = Band.all
     else
       @albums = Album.includes(:photos).search params[:term], fields: [:name], match: :word_start
