@@ -5,7 +5,7 @@
         <%=user.username%>
       </div>
       <div class="col-md-3">
-        <%=link_to 'Add friend',friendships_path(:friend_id => user), :method => :post%>
+        <%=link_to 'Add friend',friendships_path(:friend_id => user),:type=> "button",:class => "btn btn-default", :method => :post%>
       </div>
     </div>
   <%end%>

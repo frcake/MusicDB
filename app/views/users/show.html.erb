@@ -1,9 +1,15 @@
 <div class='container'>
-  <div class='jumbotron'>
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
-    <%if  current_user%>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Record Library</a></li>
+    <li><a data-toggle="tab" href="#menu1">Followers</a></li>
+    <li><a data-toggle="tab" href="#menu2">Following</a></li>
+    <li><a data-toggle="tab" href="#menu3">User</a></li>
+  </ul>
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <div class="tab-content">
+    <div id="menu3" class="tab-pane fade">
       <div class="row">
         <div class="col-md-3">
           <table class="table table-sm table-dark">
@@ -21,39 +27,49 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <h3>Following</h3>
-        <table class="table table-sm table-dark">
-          <tbody>
-            <%@user.friendships.each do |friendship|%>
-              <tr>
-                <td><%=friendship.friend.username%> </td>
-                <td><%=link_to "remove", friendship , :method => :delete%></td>
-              </tr>
-            <%end%>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-2 col-md-offset-2 ">
-        <h3>Followed by</h3>
-        <table class="table table-sm table-dark">
-          <tbody>
-            <tr>
-              <% @user.inverse_friends.each do |inverse_friend|%>
-                <td><%= inverse_friend.username%></td>
-              </tr>
-            <%end%>
-          </tbody>
-        </table>
+    <div id="menu1" class="tab-pane fade">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1 ">
+          <h3>Following</h3>
+          <table class="table table-sm table-dark">
+            <tbody>
+              <%@user.friendships.each do |friendship|%>
+                <tr>
+                  <td><%=friendship.friend.username%> </td>
+                  <td><%=link_to "remove", friendship ,:type=> "button",:class => "btn btn-default", :method => :delete%></td>
+                </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <h1>Record Library</h1>
-    <%@user.albums.each do |album|%>
-      <%= render 'albums/local_index', album: album%>
-    <%end%>
-  <%else%>
-    <h3>Please log in</h3>
-    <%=link_to 'Login',login_path%>
-  <%end%>
+    <div id="menu2" class="tab-pane fade">
+      <div class="row">
+        <div class="col-md-2 col-md-offset-1 ">
+          <h3>Followed by</h3>
+          <table class="table table-sm table-dark">
+            <tbody>
+              <tr>
+                <% @user.inverse_friends.each do |inverse_friend|%>
+                  <td><%= inverse_friend.username%></td>
+                <%end%>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="home" class="tab-pane active ">
+      <h1>Record Library</h1>
+      <%if  current_user%>
+        <%@user.albums.each do |album|%>
+          <%= render 'albums/local_index', album: album%>
+        <%end%>
+      <%else%>
+        <h3>Please log in</h3>
+        <%=link_to 'Login',login_path%>
+      <%end%>
+    </div>
+  </div>
 </div>

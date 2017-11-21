@@ -27,7 +27,7 @@ html, body {
 }
 
 body {
-  /*padding-top: 40px;*/
+  padding-top: 125px;
 }
 
 h1 {
@@ -168,7 +168,7 @@ h3 {
 
 #carousel-container {
   padding: 0px;
-  padding-top: 130px !important;
+  /*padding-top: 130px !important;*/
 }
 
 .container-marketing {
