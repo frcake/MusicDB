@@ -175,8 +175,15 @@ h3 {
 
 #latest-container {
   text-align: center;
+  padding: 5px;
 }
 
 #latest-caption-container {
   text-align: center;
+}
+
+#latest-jumbotron {}
+
+#latest-subcol-container {
+  padding: 5px;
 }
