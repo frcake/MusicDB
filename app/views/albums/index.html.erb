@@ -19,11 +19,13 @@
       <%=render 'albums/local_index' , album: album%>
     <%end%>
   </div>
-  <h2>Bands/Artists</h2>
   <%if @bands%>
-    <%@bands.each do |band|%>
-      <%=link_to band.name, band_path(band)%>
-    <%end%>
+    <h2>Bands/Artists</h2>
+    <ul class="list-group">
+      <%@bands.each do |band|%>
+        <%=render 'bands/local_index', band: band%>
+      <%end%>
+    </ul>
   <%end%>
   <% unless @albums.is_a? Array%>
     <div class="center-div">
