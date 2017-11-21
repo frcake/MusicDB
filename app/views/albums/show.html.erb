@@ -8,40 +8,54 @@
     <div class="col-md-6">
       <ul class="list-group">
         <li class="list-group-item">
+          <div class="row">
+            <div id="album-show-add-btn" class="col-md-12 col-xs-12 col-sm-12">
+              <% if current_user%>
+                <%if !current_user.albums.collect(&:id).include?(@album.id)%>
+                  <%=link_to 'Add to library',record_libraries_path(:album_id => @album), :class => 'btn btn-primary' , :method => :post%>
+                <%else%>
+                  <%=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: @album.id), :class => 'btn btn-primary' , :method => :delete%>
+                <%end%>
+              <%end%>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
           <h3><%=@album.name%>
             <div class="pull-right">
               <%= Category.find(@album.category_id).name%>
             </div>
           </h3>
         </li>
-        <li  class="list-group-item">
-          <ul class="list-group" >
-            <%@album.songs.each do |song|%>
+        <li>
+          <li  class="list-group-item">
+            <ul class="list-group" >
+              <%@album.songs.each do |song|%>
+                <li class="list-group-item">
+                  <%=song.name%>
+                </li>
+              <%end%>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row"%>
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li>
+            <%= link_to band_path(@album.band) do %>
+              <%=@album.band.name%>
+            <%end%>
+          </li>
+          <%@album.band.artists.each do |artist|%>
+            <%=link_to artist_path(artist) do %>
               <li class="list-group-item">
-                <%=song.name%>
+                <%=artist.name%>
               </li>
             <%end%>
-          </ul>
-        </li>
-      </ul>
+          <%end%>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="row"%>
-    <div class="col-md-6">
-      <ul class="list-group">
-        <li>
-          <%= link_to band_path(@album.band) do %>
-            <%=@album.band.name%>
-          <%end%>
-        </li>
-        <%@album.band.artists.each do |artist|%>
-          <%=link_to artist_path(artist) do %>
-            <li class="list-group-item">
-              <%=artist.name%>
-            </li>
-          <%end%>
-        <%end%>
-      </ul>
-    </div>
-  </div>
-</div>
