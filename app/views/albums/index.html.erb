@@ -85,17 +85,19 @@
     <%@albums.each do |album|%>
       <%= render 'albums/local_index' ,album: album%>
     <%end%>
+  </div>
+  <%if @bands%>
     <h2>Bands/Artists</h2>
-    <%if @bands%>
+    <ul class="list-group">
       <%@bands.each do |band|%>
-        <%=link_to band.name, band_path(band)%>
+        <%=render 'bands/local_index', band: band%>
       <%end%>
-    <%end%>
-    <% unless @albums.is_a? Array%>
-      <div class="center-div">
-        <div class="digg_pagination">
-          <%= will_paginate @albums , :previous_label => '<', :next_label => '>' %>
-        </div>
+    </ul>
+  <%end%>
+  <% unless @albums.is_a? Array%>
+    <div class="center-div">
+      <div class="digg_pagination">
+        <%= will_paginate @albums , :previous_label => '<', :next_label => '>' %>
       </div>
     <%end%>
   </div>
