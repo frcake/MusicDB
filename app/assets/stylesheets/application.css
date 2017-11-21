@@ -32,7 +32,13 @@ body {
 
 h1 {
   font-family: 'Righteous', cursive;
-  font-size: 100px;
+  font-size: 80px;
+  color: #1FD476;
+}
+
+h5 {
+  font-family: 'Righteous', cursive;
+  font-size: 25px;
   color: #1FD476;
 }
 
@@ -182,8 +188,15 @@ h3 {
   text-align: center;
 }
 
-#latest-jumbotron {}
+#latest-jumbotron {
+  background-color: #FAFAFA;
+  box-shadow: 2px 2px 5px grey;
+}
 
 #latest-subcol-container {
   padding: 5px;
+}
+
+#latest-header-container {
+  text-align: center;
 }
