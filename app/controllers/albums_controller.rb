@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   def index
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.all.paginate(page: params[:page] || 1, per_page: 6).includes(:photos)
+      @albums = Album.all.paginate(page: params[:page] || 1, per_page: 9).includes(:photos)
       @latest_albums = Album.includes(:photos).last(3).reverse
     else
       q = Searchkick.search params[:term], index_name: [Album, Band], model_includes: { Band => [:albums], Album => [:band] }, fields: [:name], match: :word_start

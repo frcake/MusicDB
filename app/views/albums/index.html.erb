@@ -67,18 +67,20 @@
   </div>
   <div class="container marketing">
     <!-- Three columns of text below the carousel -->
-    <% @latest_albums.each do |latest_album| %>
-      <div class="col-lg-4">
-        <%latest_album.photos.each do |photo|%>
-          <%= link_to album_path(latest_album) do %>
-            <%= image_tag photo.image ,class: "img-rounded" ,width: "140" ,height:"140"%>
+    <%unless @latest_albums.nil?%>
+      <% @latest_albums.each do |latest_album| %>
+        <div class="col-lg-4">
+          <%latest_album.photos.each do |photo|%>
+            <%= link_to album_path(latest_album) do %>
+              <%= image_tag photo.image ,class: "img-rounded" ,width: "140" ,height:"140"%>
+            <%end%>
           <%end%>
-        <%end%>
-        <%= link_to album_path(latest_album) do %>
-          <h2><%= latest_album.name%></h2>
-        <%end%>
-      </div>
-      <!-- /.col-lg-4 -->
+          <%= link_to album_path(latest_album) do %>
+            <h2><%= latest_album.name%></h2>
+          <%end%>
+        </div>
+        <!-- /.col-lg-4 -->
+      <%end%>
     <%end%>
     <!-- /.row -->
     <!-- START THE FEATURETTES -->
@@ -101,3 +103,4 @@
       </div>
     <%end%>
   </div>
+</div>
