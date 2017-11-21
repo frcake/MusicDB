@@ -1,4 +1,4 @@
-<!-- <div class="col-sm-6 col-md-4">
+<div class="col-sm-6 col-md-4">
   <div class="thumbnail">
     <%unless album.blank?%>
       <%album.photos.each do |photo|%>
@@ -9,31 +9,15 @@
     <%end%>
     <div class="caption">
       <h3><%=album.name%></h3>
-      <!-- <p>...</p> -->
+      <!-- <p>...</p>
 <!-- <p><a href="#" class="btn btn-primary" role="button">Add to Library</a> <a href="#" class="btn btn-default glyphicon glyphicon-heart" role="button"></a></p> -->
-<%# if current_user%>
-<%#if !current_user.albums.collect(&:id).include?(album.id)%>
-<%#=link_to 'Add to library',record_libraries_path(:album_id => album), :class => 'btn btn-primary' , :method => :post%>
-<%#else%>
-<%#=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: album.id), :class => 'btn btn-primary' , :method => :delete%>
-<%#end%>
-<%#end%>
-<!-- </div>
-  </div>
-</div>  -->
-<hr class="featurette-divider">
-<div class="row featurette">
-  <div class="col-md-7">
-    <%= link_to album_path(album) do %>
-      <h2 class="featurette-heading"><%= album.name%></h2>
-    <%end%>
-  </div>
-  <div class="col-md-5">
-    <%album.photos.each do |photo|%>
-      <%= link_to album_path(album) do %>
-        <%= image_tag photo.image ,class:"featurette-image img-responsive center-block",alt:"Generic placeholder image"%>
-        <%#=image_tag photo.image , class:'imagesize'%>
+      <% if current_user%>
+        <%if !current_user.albums.collect(&:id).include?(album.id)%>
+          <%=link_to 'Add to library',record_libraries_path(:album_id => album), :class => 'btn btn-primary' , :method => :post%>
+        <%else%>
+          <%=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: album.id), :class => 'btn btn-primary' , :method => :delete%>
+        <%end%>
       <%end%>
-    <%end%>
+    </div>
   </div>
 </div>

@@ -10,24 +10,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav id="main-nav" class="navbar navbar-default navbar-fixed-top">
-      <div class='container-fluid'>
-        <div class="navbar-header">
-          <%=link_to 'MusicDB',root_path , class: 'navbar-brand'%>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <%if current_user%>
-            <li>
-              <%=link_to current_user.username, user_path(current_user) %>
-            </li>
-            <li><%=link_to 'Logout' ,logout_path , method: :delete%></li>
-          <%else%>
-            <li><%=link_to 'Login' ,login_path%></li>
-            <li><%=link_to 'Sign Up' ,new_user_path%></li>
-          <%end%>
-        </ul>
-      </div>
-    </nav>
+    <%=render 'navbar'%>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
