@@ -1,8 +1,10 @@
 <div class="col-sm-6 col-md-4">
   <div class="thumbnail">
-    <%album.photos.each do |photo|%>
-      <%= link_to album_path(album) do %>
-        <%=image_tag photo.image , class:'imagesize'%>
+    <%if !album.blank?%>
+      <%album.photos.each do |photo|%>
+        <%= link_to album_path(album) do %>
+          <%=image_tag photo.image , class:'imagesize'%>
+        <%end%>
       <%end%>
     <%end%>
     <div class="caption">

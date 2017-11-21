@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    if params[:term].nil? || params[:term].empty?
-      @albums = Album.all.includes(:photos).paginate(page: params[:page] || 1, per_page: 3)
-      @bands = Band.all
-    else
-      @albums = Album.includes(:photos).search params[:term], fields: [:name], match: :word_start
-      @bands = Band.search params[:term], fields: [:name], match: :word_start
-    end
+    # if params[:term].nil? || params[:term].empty?
+    #   @albums = Album.all.paginate(page: params[:page] || 1, per_page: 9).includes(:photos)
+    #   @bands = Band.all
+    # else
+    #   @albums = Album.includes(:photos).search params[:term], fields: [:name], match: :word_start
+    #   @bands = Band.search params[:term], fields: [:name], match: :word_start
+    # end
 
     #### rock , metal , punk ,Hip Hop,country,pop,Stoner Rock,'Electronic Death Metal,Blues
     # # ####Api ScrapScript#############

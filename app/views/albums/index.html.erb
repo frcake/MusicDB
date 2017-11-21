@@ -1,0 +1,35 @@
+<div class='container'>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-4">
+      <h1>Music DB</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <%= render 'admin/flash_messages'%>
+    <%#=render 'categories/index_categories'%>
+  </div>
+  <div class="row">
+    <%#=link_to 'Admin Dashboard',admin_dashboard_path%>
+  </div>
+  <div class="row">
+    <%=render 'search/form'%>
+  </div>
+  <div class="row">
+    <%@albums.each do |album|%>
+      <%=render 'albums/local_index' , album: album%>
+    <%end%>
+  </div>
+  <h2>Bands/Artists</h2>
+  <%if @bands%>
+    <%@bands.each do |band|%>
+      <%=link_to band.name, band_path(band)%>
+    <%end%>
+  <%end%>
+  <% unless @albums.is_a? Array%>
+    <div class="center-div">
+      <div class="digg_pagination">
+        <%= will_paginate @albums , :previous_label => '<', :next_label => '>' %>
+      </div>
+    </div>
+  <%end%>
+</div>

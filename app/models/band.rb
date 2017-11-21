@@ -6,5 +6,17 @@ class Band < ApplicationRecord
   has_many :photos, as: :imageable, dependent: :destroy
   has_many :artists, through: :bandmembers
   belongs_to :category, optional: true
+
+  def search_data
+    {
+      name: name
+    }.merge(search_albums)
+  end
+
+  def search_albums
+    {
+      album_names: albums.map(&:name)
+    }
+  end
 end
 # Band.reindex

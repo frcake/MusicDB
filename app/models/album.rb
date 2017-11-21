@@ -13,7 +13,12 @@ class Album < ApplicationRecord
   # validation
   validates :name, presence: true
   # validates :release_date, presence: true
-
+  def search_data
+    {
+      name: name,
+      band_name: band.name
+    }
+  end
   # paginates_per 25
 end
 # Album.reindex

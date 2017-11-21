@@ -1,10 +1,18 @@
 <div class ="container">
-  <div clas = "row">
+  <div class = "row">
     <div class="col-md-4">
       <%=@band.name%>
     </div>
     <div class="col-md-4">
       <%=@band_discogs.profile%>
     </div>
+  </div>
+  <div class="row">
+    <h1>Albums</h1>
+  </div>
+  <div class="row">
+    <%@band.albums.each do |album|%>
+      <%= render 'albums/local_index', album: album%>
+    <%end%>
   </div>
 </div>
