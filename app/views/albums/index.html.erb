@@ -27,7 +27,7 @@
   </div>
 </div>
 <!-- /.carousel -->
-<div class='container'>
+<div  class='container'>
   <div class="row">
     <div class="col-md-5 col-md-offset-4">
       <h1>Music DB</h1>
@@ -43,25 +43,41 @@
   <div class="row">
     <%=render 'search/form'%>
   </div>
-  <div class="container marketing">
+</div>
+<div id="jumbotron-container" class="container">
+  <div class="jumbotron">
     <!-- Three columns of text below the carousel -->
-    <%unless @latest_albums.nil?%>
-      <% @latest_albums.each do |latest_album| %>
-        <div class="col-lg-4">
-          <%latest_album.photos.each do |photo|%>
-            <%= link_to album_path(latest_album) do %>
-              <%= image_tag photo.image ,class: "img-rounded" ,width: "140" ,height:"140"%>
-            <%end%>
-          <%end%>
-          <%= link_to album_path(latest_album) do %>
-            <h2><%= latest_album.name%></h2>
-          <%end%>
-        </div>
-        <!-- /.col-lg-4 -->
+    <div class="row">
+      <%unless @latest_albums.nil?%>
+        <% @latest_albums.each do |latest_album| %>
+          <div class="col-md-4">
+            <div class="row">
+              <div id="latest-container" class="col-md-11">
+                <%latest_album.photos.each do |photo|%>
+                  <%= link_to album_path(latest_album) do %>
+                    <%= image_tag photo.image ,class: "img-rounded" ,width: "140" ,height:"140"%>
+                  <%end%>
+                <%end%>
+              </div>
+            </div>
+            <div class="row">
+              <div id="latest-caption-container" class="col-md-11">
+                <%= link_to album_path(latest_album) do %>
+                  <%= latest_album.name%>
+                <%end%>
+              </div>
+            </div>
+          </div>
+          <!-- /.col-lg-4 -->
+        <%end%>
       <%end%>
-    <%end%>
-    <!-- /.row -->
-    <!-- START THE FEATURETTES -->
+    </div>
+  </div>
+</div>
+<!-- /.row -->
+<!-- START THE FEATURETTES -->
+<div class="container">
+  <div class="row">
     <%@albums.each do |album|%>
       <%= render 'albums/local_index' ,album: album%>
     <%end%>

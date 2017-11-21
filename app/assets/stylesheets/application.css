@@ -164,3 +164,19 @@ h3 {
   padding: 0px;
   padding-top: 130px !important;
 }
+
+.container-marketing {
+  border: 1px #fff;
+}
+
+#jumbotron-container {
+  overflow: auto;
+}
+
+#latest-container {
+  text-align: center;
+}
+
+#latest-caption-container {
+  text-align: center;
+}
