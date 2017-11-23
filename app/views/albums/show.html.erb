@@ -1,61 +1,57 @@
 <div class="container">
   <div class="row">
     <div id="album-image" class="col-md-6">
-      <%@album.photos.each do |photo|%>
-        <%=image_tag photo.image , class:'imagesize'%>
-      <%end%>
+      <div class="row">
+        <div class="col-md-12">
+          <%@album.photos.each do |photo|%>
+            <%=image_tag photo.image , class:'imagesize-album-show'%>
+          <%end%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h5>Band</h5>
+          <%= link_to band_path(@album.band) do %>
+            <%=@album.band.name%>
+          <%end%>
+        </div>
+        <div id="album-show-add-btn"class="col-md-6">
+          <% if current_user%>
+            <%if !current_user.albums.collect(&:id).include?(@album.id)%>
+              <%=link_to 'Add to library',record_libraries_path(:album_id => @album), :class => 'btn btn-primary' , :method => :post%>
+            <%else%>
+              <%=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: @album.id), :class => 'btn btn-primary' , :method => :delete%>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h5>Members</h5>
+          <%@album.band.artists.each do |artist|%>
+            <%=link_to artist_path(artist) do %>
+              <%=artist.name%><span> , </span>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <ul class="list-group">
         <li class="list-group-item">
-          <div class="row">
-            <div id="album-show-add-btn" class="col-md-12 col-xs-12 col-sm-12">
-              <% if current_user%>
-                <%if !current_user.albums.collect(&:id).include?(@album.id)%>
-                  <%=link_to 'Add to library',record_libraries_path(:album_id => @album), :class => 'btn btn-primary' , :method => :post%>
-                <%else%>
-                  <%=link_to 'Remove from library',RecordLibrary.find_by(user_id: current_user.id,album_id: @album.id), :class => 'btn btn-primary' , :method => :delete%>
-                <%end%>
-              <%end%>
-            </div>
-          </div>
+          <h5>Category:
+          <span class="colorh5"><%= Category.find(@album.category_id).name%></h5>
+          </span>
         </li>
         <li class="list-group-item">
-          <h3><%=@album.name%>
-            <div class="pull-right">
-              <%= Category.find(@album.category_id).name%>
-            </div>
-          </h3>
+          <h3><%=@album.name%></h3>
         </li>
-        <li>
-          <li  class="list-group-item">
-            <ul class="list-group" >
-              <%@album.songs.each do |song|%>
-                <li class="list-group-item">
-                  <%=song.name%>
-                </li>
-              <%end%>
-            </ul>
+        <%@album.songs.each do |song|%>
+          <li class="list-group-item">
+            <%=song.name%>
           </li>
-        </ul>
-      </div>
-    </div>
-    <div class="row"%>
-      <div class="col-md-6">
-        <ul class="list-group">
-          <li>
-            <%= link_to band_path(@album.band) do %>
-              <%=@album.band.name%>
-            <%end%>
-          </li>
-          <%@album.band.artists.each do |artist|%>
-            <%=link_to artist_path(artist) do %>
-              <li class="list-group-item">
-                <%=artist.name%>
-              </li>
-            <%end%>
-          <%end%>
-        </ul>
-      </div>
+        <%end%>
+      </ul>
     </div>
   </div>
+</div>
