@@ -221,3 +221,19 @@ h3 {
     height: auto;
   }
 }
+
+.carousel-container {
+  position: relative;
+}
+
+#image-slides {
+  display: block;
+  margin: auto;
+  width: 50 height:auto;
+}
+
+/*album show*/
+
+#album-image>img {
+  width: 100% !important;
+}
