@@ -48,7 +48,7 @@ h5 {
   border-bottom: none;
 }
 
-.thumbnail>img {
+/*.thumbnail>img {
   width: 100%;
   height: 100%;
 }
@@ -56,6 +56,18 @@ h5 {
 .imagesize {
   width: 100%;
   height: 100%;
+}*/
+
+.list-group {
+  list-style: none;
+}
+
+.imagesize {
+  width: 100% !important;
+}
+
+.imagesize-album-show {
+  width: 100% !important;
 }
 
 .list-group-item {
@@ -201,12 +213,13 @@ h3 {
   text-align: center;
 }
 
-.album-show-add-btn {
-  text-align: center;
+#album-show-add-btn {
+  text-align: right;
+  padding: 15px;
 }
 
 @media only screen and (max-width: 768px) {
-  .thumbnail>img {
+  /*.thumbnail>img {
     width: 20px !important;
     height: auto;
   }
@@ -214,12 +227,24 @@ h3 {
     width: auto !important;
     height: auto !important;
   }
+
+  .thumbnail {
+    height: auto;
+  }*/
   .caption {
     display: none;
   }
-  .thumbnail {
-    height: auto;
+  .imagesize {
+    width: auto !important;
+    max-height: 100% !important;
   }
+  .thumbnail {
+    border: none;
+  }
+}
+
+.colorh5 {
+  color: #363286;
 }
 
 .carousel-container {
