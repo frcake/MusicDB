@@ -1,5 +1,7 @@
 {
   "name": "MusicDB",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "owl.carousel": "^2.2.0"
+  }
 }

@@ -257,6 +257,25 @@ h3 {
   width: 50 height:auto;
 }
 
+/*CAROUSEL*/
+
+.owl-carousel {
+  padding: 1%;
+}
+
+.img-rounded {
+  width: 80% !important;
+  height: auto;
+}
+
+.owl-nav {
+  display: none;
+}
+
+.owl-dots {
+  display: none;
+}
+
 /*album show*/
 
 #album-image>img {
