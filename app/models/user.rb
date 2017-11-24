@@ -17,6 +17,16 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  # Mailboxer
+  acts_as_messageable
+
+  def mailboxer_email(_object)
+    email
+end
+
+  def name
+    username
+  end
 
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

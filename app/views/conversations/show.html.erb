@@ -1,0 +1,30 @@
+<div class="center-div">
+  <div class="messages-box">
+    <% page_header "Conversation" %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= @conversation.subject %></div>
+      <div class="panel-body">
+        <div class="messages">
+          <% @conversation.receipts_for(current_user).order(created_at: :desc).each do |receipt| %>
+            <div class="msg">
+              <p class="received-message"><% message = receipt.message %></p>
+              <p class="sender-message"><span><%= message.sender.name %></span>
+                <small class="pull-right"><span class="text-muted"><%= message.created_at.strftime("%-d %b %Y, %H:%M") %></span></small>
+              </p>
+              <p class="body-message"><%= simple_format(word_wrap(message.body , line_width: 80)) %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= form_tag reply_conversation_path(@conversation), method: :post do %>
+      <div class="form-group" word-wrap="break-word">
+        <%= text_area_tag 'body', nil, rows: 8,cols: 3, class: 'tinymce', placeholder: 'Απάντηση....' %>
+        <%= tinymce %>
+      </div>
+      <div class="linkbtn">
+        <%= submit_tag "Αποστολή", class: 'btn-submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>

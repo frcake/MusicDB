@@ -78,6 +78,8 @@ gem 'bootstrap-will_paginate'
 gem 'mailboxer'
 
 
+gem 'tinymce-rails'
+
 
 
 group :development, :test do

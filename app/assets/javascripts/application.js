@@ -18,8 +18,27 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require select2
-
+//= require tinymce
 //= require_tree .
+
+tinymce.init({
+selector: 'textarea',
+//merge with default formats
+style_formats_merge: true,
+//set up custom style formats
+style_formats: [
+        {title: 'Red Background', block: 'p', styles: {
+            'background-color': '#ffffff',
+            'color':'white',
+            'padding': '7px'}
+        },
+    	{title: 'Blue Background', block: 'p', styles: {
+        	'background-color': '#0000ff',
+            'color':'white',
+            'padding': '7px'}
+        }
+    ]
+});
 
 $("#dropdown").select2({theme: "bootstrap"});
 
@@ -37,31 +56,30 @@ $(function() {
  $("#datepicker").datepicker({changeMonth: true, changeYear: true, yearRange: "1900:2100"});
 });
 
-
-$(document).ready(function(){
-  $(".owl-carousel").owlCarousel({
-   loop:true,
-    margin:10,
-    responsiveClass:true,
-     autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:true,
-    responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:3,
-            nav:false
-        },
-        1000:{
-            items:5,
-            nav:true,
-            loop:false
-        }
-    }
-  });
+$(document).ready(function() {
+ $(".owl-carousel").owlCarousel({
+  loop: true,
+  margin: 10,
+  responsiveClass: true,
+  autoplay: true,
+  autoplayTimeout: 2000,
+  autoplayHoverPause: true,
+  responsive: {
+   0: {
+    items: 1,
+    nav: true
+   },
+   600: {
+    items: 3,
+    nav: false
+   },
+   1000: {
+    items: 5,
+    nav: true,
+    loop: true
+   }
+  }
+ });
 })
 //   $( function() {
 //   $( document ).tooltip();

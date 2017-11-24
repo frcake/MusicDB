@@ -1,0 +1,35 @@
+<%#= render "breadpart/breadcrumb" %>
+<div class="messages-box">
+  <div class="center-div">
+    <% page_header "Your Conversations" %>
+    <div class="row">
+      <div class="col-sm-3">
+        <ul class="nav nav-pills nav-stacked" id="msgmenu">
+          <li class="active"><%= mailbox_section 'Inbox', @box %></li>
+          <li><%= mailbox_section 'Sent', @box %></li>
+          <li><%= mailbox_section 'Trash', @box %></li>
+        </ul>
+      </div>
+      <div class="col-sm-9">
+        <% if @box == 'trash' %>
+          <p>
+            <%= link_to 'Άδειασμα κάδου', empty_trash_conversations_path, class: 'btn btn-danger', method: :delete,data: {confirm: 'Are you sure?'} %>
+          </p>
+        <% end %>
+        <%if @conversations.present? %>
+          <ul class="list-group">
+            <%= render partial: 'conversations/conversation', collection: @conversations %>
+          </ul>
+        <%else%>
+          <h1 class= "glyphicon glyphicon-envelope"></h1>
+          <h3>Κανένα μήνυμα!</h3>
+        <%end%>
+        <div class="center-div">
+          <div class="digg_pagination">
+            <%= will_paginate  :previous_label => '<', :next_label => '>' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
