@@ -18,4 +18,4 @@ class Category < ApplicationRecord
     }
   end
 end
-Category.reindex
+# Category.reindex

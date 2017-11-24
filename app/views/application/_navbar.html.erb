@@ -16,6 +16,11 @@
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
       </ul> -->
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <%= link_to 'Search By Categories',categories_path %>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <%if current_user%>
           <li>

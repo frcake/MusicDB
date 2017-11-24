@@ -46,10 +46,6 @@ Rails.application.routes.draw do
   resources :artists
   get 'album/:id' => 'albums#show', as: 'album'
 
-  resources :categories do
-    resources :albums do
-    end
-  end
-
-  # resources :categories
+  get 'categories' => 'categories#index'
+  resources :categories
 end

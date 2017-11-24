@@ -3,10 +3,13 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  def index; end
+  def index
+    @categories = Category.all
+  end
 
   def show
     @category = Category.find(params[:id])
+    @albums = Album.includes(:photos).where(category_id: @category.id)
   end
 
   def create
