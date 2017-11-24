@@ -1,6 +1,9 @@
 <div class="center-div">
   <div class="messages-box">
     <% page_header "Conversation" %>
+    <p>Chatting with
+     <%= render 'conversations/participants', conversation: @conversation %>
+    </p>
     <div class="panel panel-default">
       <div class="panel-heading"><%= @conversation.subject %></div>
       <div class="panel-body">

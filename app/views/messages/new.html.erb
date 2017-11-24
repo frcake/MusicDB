@@ -2,7 +2,7 @@
 <div class="container">
   <div class="center-div">
     <div class="col-md-12 ">
-      <%= form_for messages_path, :method => 'post' do %>
+      <%= form_for messages_path(@conversation), method: :post do %>
         <div class="form-group">
           <%= label_tag 'message[subject]', 'Subject' %>
           <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
