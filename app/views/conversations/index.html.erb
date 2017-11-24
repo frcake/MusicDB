@@ -5,6 +5,7 @@
     <div class="row">
       <div class="col-sm-3">
         <ul class="nav nav-pills nav-stacked" id="msgmenu">
+          <li><%= link_to 'Νέο', new_message_path%></li>
           <li class="active"><%= mailbox_section 'Inbox', @box %></li>
           <li><%= mailbox_section 'Sent', @box %></li>
           <li><%= mailbox_section 'Trash', @box %></li>

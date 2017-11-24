@@ -7,6 +7,10 @@ class MessagesController < ApplicationController
     # @classified = Classified.find_by(id: params[:classified_id])
   end
 
+  def contact
+    @chosen_recipient = User.find_by(id: params[:to].to_i) if params[:to]
+  end
+
   def mailboxer_email(object)
     puts object
     email

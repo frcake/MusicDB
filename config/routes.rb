@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   default_url_options host: 'localhost:3000'
 
+  get '/contact', to: 'messages#contact'
+
   resources :record_libraries
   resources :friendships
   root 'albums#index'

@@ -23,7 +23,6 @@
     <%= form_tag reply_conversation_path(@conversation), method: :post do %>
       <div class="form-group" word-wrap="break-word">
         <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
-        <%#= tinymce %>
       </div>
       <div class="linkbtn">
         <%= submit_tag "Αποστολή", class: 'btn-submit' %>

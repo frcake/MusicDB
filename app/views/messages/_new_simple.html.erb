@@ -1,0 +1,26 @@
+<% page_header "Start Conversation" %>
+<div class="container">
+  <div class="center-div">
+    <div class="col-md-12 ">
+      <%= form_tag :messages,:url => url_for(:controller => 'messages', :action => 'create') do |f|%>
+        <div class="form-group">
+          <%= label_tag 'message[subject]', 'Subject' %>
+          <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
+        </div>
+        <div class="form-group">
+          <%= label_tag 'message[body]', 'Message' %>
+          <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true %>
+        </div>
+        <div class="form-group">
+          <%= label_tag 'recipients', 'Choose recipients' %>
+          <% if for_admin %>
+            <%= select_tag 'recipients', recipients_admin_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
+          <%else%>
+            <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
+          <%end%>
+        </div>
+        <%= submit_tag 'Send', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
