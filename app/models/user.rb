@@ -20,7 +20,8 @@ class User < ApplicationRecord
   # Mailboxer
   acts_as_messageable
 
-  def mailboxer_email(_object)
+  def mailboxer_email(object)
+    puts object
     email
 end
 

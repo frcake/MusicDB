@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options host: 'localhost:3000'
+
   resources :record_libraries
   resources :friendships
   root 'albums#index'
@@ -67,6 +69,4 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
-
-  # resources :categories
 end

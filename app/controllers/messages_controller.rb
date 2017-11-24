@@ -7,7 +7,8 @@ class MessagesController < ApplicationController
     # @classified = Classified.find_by(id: params[:classified_id])
   end
 
-  def mailboxer_email(_object)
+  def mailboxer_email(object)
+    puts object
     email
   end
 

@@ -18,27 +18,9 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require select2
-//= require tinymce
 //= require_tree .
 
-tinymce.init({
-selector: 'textarea',
-//merge with default formats
-style_formats_merge: true,
-//set up custom style formats
-style_formats: [
-        {title: 'Red Background', block: 'p', styles: {
-            'background-color': '#ffffff',
-            'color':'white',
-            'padding': '7px'}
-        },
-    	{title: 'Blue Background', block: 'p', styles: {
-        	'background-color': '#0000ff',
-            'color':'white',
-            'padding': '7px'}
-        }
-    ]
-});
+
 
 $("#dropdown").select2({theme: "bootstrap"});
 
