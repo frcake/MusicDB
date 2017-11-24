@@ -1,5 +1,6 @@
 class Admin::PhotosController < AdminController
-  before_action :find_photo, only:[:index,:show]
+  before_action :require_admin
+  before_action :find_photo, only: %i[index show]
 
   def index
     @album = Album.find(params[:album_id])
@@ -28,7 +29,6 @@ class Admin::PhotosController < AdminController
       format.html # new.html.erb
       format.json { render json: @photo }
     end
-
   end
 
   def create
@@ -37,8 +37,8 @@ class Admin::PhotosController < AdminController
       respond_to do |format|
         format.html do
           render json: [@photo.to_jq_upload].to_json,
-          content_type: 'text/html',
-          layout: false
+                 content_type: 'text/html',
+                 layout: false
         end
         format.json do
           render json: [@photo.to_jq_upload].to_json
@@ -76,14 +76,15 @@ class Admin::PhotosController < AdminController
     #   format.json { head :no_content }
     #   format.js   { render layout: false }
     # end
-
   end
 
   private
+
   def find_photo
     @photo = Photo.find(params[:id])
   end
+
   def photo_params
-    params.require.permit(:photo, :album_id,:image, :image_file_name, :image_content_type, :image_file_size)
+    params.require.permit(:photo, :album_id, :image, :image_file_name, :image_content_type, :image_file_size)
   end
 end

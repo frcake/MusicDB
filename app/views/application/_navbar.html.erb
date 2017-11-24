@@ -15,6 +15,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><%= link_to 'Contact Us!', new_message_path %><span class="sr-only">(current)</span></a></li>
       <li><%= link_to 'Messages', conversations_path %></li>
+      <li>
+        <%= link_to 'Search By Categories',categories_path %>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <%if current_user%>
@@ -29,6 +32,8 @@
     </ul>
   </div>
   <!-- /.navbar-collapse -->
+</div>
+<!-- /.navbar-collapse -->
 </div>
 <!-- /.container-fluid -->
 </nav>

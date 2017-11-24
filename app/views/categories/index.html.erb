@@ -1,0 +1,9 @@
+<div class="container">
+  <% @categories.each do |category| %>
+    <div class="col-md">
+      <%= link_to category_path(category) do %>
+        <%= category.name %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

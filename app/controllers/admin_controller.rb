@@ -1,15 +1,15 @@
 class AdminController < ApplicationController
-  #before_action :require_admin
+  before_action :require_admin
   def index
-    @albums = Album.all
-    @songs = Song.all
+    @albums = Album.includes(:songs).all
     @aritsts = Artist.all
     @bands = Band.all
   end
-  #
-  # def require_admin
-  #   unless current_user.is_admin?
-  #     redirect_to root_path
-  #   end
-  # end
+
+  def require_admin
+    unless logged_in? && current_user.is_admin?
+      redirect_to root_path
+      flash[:warning] = 'No Access'
+    end
+  end
 end
