@@ -2,7 +2,7 @@
 <div class="container">
   <div class="center-div">
     <div class="col-md-12 ">
-      <%= form_for messages_path(@conversation), method: :post do %>
+      <%= form_for :message,:url => url_for(:controller => 'messages', :action => 'create') do |f|%>
         <div class="form-group">
           <%= label_tag 'message[subject]', 'Subject' %>
           <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true %>
@@ -16,7 +16,7 @@
           <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2 tinymce' , required: true%>
           <%= tinymce :content_css => asset_path('application.css')%>
         </div>
-        <%= submit_tag 'Send', class: 'btn btn-primary' %>
+        <%= f.submit 'Send', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

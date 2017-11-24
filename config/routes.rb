@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  post '/messages', to: 'messages#create'
-  get '/messages/new', to: 'messages#new'
+  resources :messages, only: %i[new create]
 
   get 'admin/dashboard' => 'admin#index'
   # The namespace  creates a nested url for admin panel check rake routes for details
@@ -54,7 +53,7 @@ Rails.application.routes.draw do
   end
 
   # mailboxer
-  resources :conversations, only: %i[index show destroy] do
+  resources :conversations, only: %i[index show destroy create] do
     member do
       post :reply
     end
