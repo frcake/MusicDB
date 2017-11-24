@@ -51,11 +51,6 @@ Rails.application.routes.draw do
   resources :artists
   get 'album/:id' => 'albums#show', as: 'album'
 
-  resources :categories do
-    resources :albums do
-    end
-  end
-
   # mailboxer
   resources :conversations, only: %i[index show destroy create] do
     member do
@@ -71,4 +66,7 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+
+  get 'categories' => 'categories#index'
+  resources :categories
 end
