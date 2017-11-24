@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page] || 1, per_page: 15)
   end
 
   def create

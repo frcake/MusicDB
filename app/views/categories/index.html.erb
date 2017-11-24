@@ -2,7 +2,9 @@
   <% @categories.each do |category| %>
     <div class="col-md">
       <%= link_to category_path(category) do %>
-        <%= category.name %>
+        <h5><%= category.name %>
+          (<%= category.albums.count%>)
+        </h5>
       <% end %>
     <% end %>
   </div>

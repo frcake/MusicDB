@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.all.includes(:albums)
   end
 
   def show
