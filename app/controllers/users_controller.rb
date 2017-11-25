@@ -4,7 +4,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(
+      :record_libraries,
+      [record_libraries: :user],
+      :inverse_friends,
+      :friendships,
+      friendships: [:friend],
+      albums: [:photos]
+    ).find(params[:id])
   end
 
   def index

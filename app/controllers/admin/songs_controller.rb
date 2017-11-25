@@ -12,12 +12,6 @@ class Admin::SongsController < AdminController
     @artists = Artist.all.map { |x| [x.name.to_s, x.id.to_s] }
   end
 
-  # @song = Song.new(song_params)
-  # @album = Album.find(song_params[:album_id])
-  # @song.album_id = song_params[:album_id]
-  # @song.category_id = @album.category_id
-  # @song.artist_id = @album.artist_id unless @album.artist_id.nil?
-  # @song.band_id = @album.band_id unless @album.band_id.nil?
   def create
     @song = Song.new(song_params)
 

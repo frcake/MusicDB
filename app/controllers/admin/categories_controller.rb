@@ -4,7 +4,6 @@ class Admin::CategoriesController < AdminController
   def new_category
     @category = Category.new
     construct_category_tree
-    binding.pry
   end
 
   def create
