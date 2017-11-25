@@ -1,9 +1,9 @@
 class AlbumsController < ApplicationController
   def index
-    # import_data
+    import_data
     @latest_albums = Album.includes(:photos).last(10).reverse
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.all.paginate(page: params[:page] || 1, per_page: 6).includes(:photos)
+      @albums = Album.includes(:photos).all.paginate(page: params[:page] || 1, per_page: 6)
     else
       q = Searchkick.search params[:term], index_name: [Album, Band], model_includes: { Band => [:albums], Album => [:band] }, fields: [:name], match: :word_start
       @bands, @albums = q.results.partition { |r| r.is_a? Band }
@@ -45,6 +45,7 @@ class AlbumsController < ApplicationController
     # artist_array = ['Gorillaz', 'New Order', 'The Prodigy', 'Pet Shop Boys', 'The Chemical Brothers']
     # artist_array = ['The Mothers of Invention', 'The Mahavishnu Orchestra', 'Tangerine Dream', 'The Shadows', 'The Tornados']
     # artist_array = ['Depeche Mode', 'Kraftwerk', 'New Order', 'Massive Attack', 'Daft Punk']
+    binding.pry
     # artist_array.each do |artist_name|
     #   @result = @discogs.search(artist_name, per_page: 10, type: :artist)
     #   next if @result.nil?
