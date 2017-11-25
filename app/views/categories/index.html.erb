@@ -3,7 +3,7 @@
     <div class="col-md">
       <%= link_to category_path(category) do %>
         <h5><%= category.name %>
-          (<%= category.albums.count%>)
+          (<%= category.albums.size%>)
         </h5>
       <% end %>
     <% end %>

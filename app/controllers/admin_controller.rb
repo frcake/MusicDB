@@ -1,7 +1,6 @@
 class AdminController < ApplicationController
   before_action :require_admin
   def index
-    binding.pry
     @albums = Album.includes(:songs, %i[band category]).all
   end
 

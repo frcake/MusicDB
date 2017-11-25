@@ -20,6 +20,11 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <% if logged_in? && current_user.is_admin %>
+        <li>
+          <%=link_to 'Dashboard', admin_dashboard_path%>
+        </li>
+      <%end%>
       <%if current_user%>
         <li>
           <%=link_to current_user.username, user_path(current_user) %>
