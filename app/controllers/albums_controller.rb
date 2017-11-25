@@ -14,6 +14,11 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @category = Category.find(@album.category_id).name
+    @band = Band.includes(:albums, :artists, albums: %i[songs photos]).find(@album.band_id)
+    @photos = @band.albums.find { |x| x.id == @album.id }.photos
+    @songs =  @band.albums.find { |x| x.id == @album.id }.songs
+    @artists = @band.artists
   end
 
   def import_data
