@@ -3,7 +3,7 @@ class Admin::SongsController < AdminController
   before_action :set_songs, only: %i[update destroy]
 
   def index_song
-    @albums = Album.includes(:songs).all
+    @songs = Song.includes(tracks: :album).all
   end
 
   def new_song

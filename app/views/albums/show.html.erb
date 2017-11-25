@@ -3,9 +3,7 @@
     <div id="album-image" class="col-md-6">
       <div class="row">
         <div class="col-md-12">
-          <% @photos.each do |photo|%>
-            <%=image_tag photo.image , class:'imagesize-album-show'%>
-          <%end%>
+          <%=image_tag  @photo , class:'imagesize-album-show'%>
         </div>
       </div>
       <div class="row">
@@ -40,7 +38,7 @@
       <ul class="list-group">
         <li class="list-group-item">
           <h5>Category:
-            <span class="colorh5"><%=@category%></h5>
+            <span class="colorh5"><%=@category_name%></h5>
           </span>
         </li>
         <li class="list-group-item">

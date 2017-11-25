@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   def index
-    import_data
+    # import_data
     @latest_albums = Album.includes(:photos).last(10).reverse
     if params[:term].nil? || params[:term].empty?
       @albums = Album.all.paginate(page: params[:page] || 1, per_page: 6).includes(:photos)
@@ -14,10 +14,10 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @category = Category.find(@album.category_id).name
+    @category_name = Category.find(@album.category_id).name
     @band = Band.includes(:albums, :artists, albums: %i[songs photos]).find(@album.band_id)
-    @photos = @band.albums.find { |x| x.id == @album.id }.photos
-    @songs =  @band.albums.find { |x| x.id == @album.id }.songs
+    @photo = @band.albums.find { |x| x.id == @album.id }.photos.first.image
+    @songs = @band.albums.find { |x| x.id == @album.id }.songs
     @artists = @band.artists
   end
 

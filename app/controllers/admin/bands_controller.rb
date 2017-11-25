@@ -1,9 +1,8 @@
 class Admin::BandsController < AdminController
-  include PhotosHelper
   before_action :require_admin
   before_action :set_band, only: %i[update destroy]
   def index_band
-    @bands = Band.all
+    @bands = Band.includes([:category])
   end
 
   def new_band

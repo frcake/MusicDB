@@ -1,9 +1,8 @@
 class Admin::AlbumsController < AdminController
-  include PhotosHelper
   before_action :find_album, only: %i[update show destroy edit]
   before_action :require_admin
   def index_album
-    @albums = Album.all.order(updated_at: :desc)
+    @albums = Album.includes(%i[band category]).all
   end
 
   def new_album

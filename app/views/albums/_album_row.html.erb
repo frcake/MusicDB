@@ -3,9 +3,9 @@
   <td><%=album.release_date%></td>
   <!--<td><%#=Category.find(album.category_id).name%></td>-->
   <!-- Helper! -->
-  <td><%=set_category(album.category_id).name%></td>
+  <td><%=album.category.name%></td>
   <%if !album.band_id.nil?%>
-    <td><%=song_band(album)%></td>
+    <td><%=album.band.name%></td>
   <%else%>
     <td><%=song_artist(album)%></td>
   <%end%>

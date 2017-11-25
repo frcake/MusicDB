@@ -1,10 +1,9 @@
 class Admin::ArtistsController < AdminController
-  include PhotosHelper
   before_action :require_admin
   before_action :find_artist, only: %i[update delete]
 
   def index_artist
-    @artists = Artist.all
+    @artists = Artist.includes([bandmembers: :band], [:category])
   end
 
   def new_artist
