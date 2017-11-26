@@ -1,18 +1,33 @@
 <div class='row'>
   <div class='form-group'>
-    <%=form_for(@user) do |user|%>
+    <%=form_for@user,html: {role: "form" ,'data-toggle' => "validator"} do |user|%>
       <%= render 'shared/error_messages' %>
       <div id='register-form' class='col-xs-12 col-sm-12 col-md-12'>
-        <%=user.text_field :username, placeholder: 'Username' , class: 'form-control'%>
+        <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <%=user.text_field :username, placeholder: 'Username' , class: 'form-control', :required => true%>
+        </div>
       </div>
       <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
-        <%=user.text_field :email, placeholder: 'email' , class: 'form-control'%>
+        <div class="form-group">
+          <label for="inputEmail">Email</label>
+          <%=user.text_field :email,class: "form-control", placeholder: 'email' ,id:"inputEmail",type: 'email' ,'data-error' =>"That email address is invalid",:required => true%>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
       <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
-        <%=user.password_field :password, placeholder: 'Password' , class: 'form-control'%>
+        <label for="inputPassword">Password</label>
+        <div class="form-group">
+          <%=user.password_field :password, placeholder: 'Password' ,id: "inputPassword", class: 'form-control','data-minlength' => "6",:required => true%>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
       <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
-        <%=user.password_field :password_confirmation, placeholder: 'Password Confirmation' , class: 'form-control'%>
+        <div class="form-group">
+          <label for="inputPassword">Password Confirmation</label>
+          <%=user.password_field :password_confirmation, placeholder: 'Password Confirmation' , class: 'form-control','data-minlength' => "6", :required => true%>
+          <div class="help-block with-errors"></div>
+        </div>
       </div>
       <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
         <%=user.submit 'Sign Up' , class: 'btn btn-primary btn-block'%>
