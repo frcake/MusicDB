@@ -1,4 +1,11 @@
 <div class ="container">
+  <div class="row">
+    <div class="col-md-12">
+      <% @artist.photos.each do  |photo|%>
+        <%=image_tag  photo.image ,class:'imagesize-artist-show'%>
+      <%end%>
+    </div>
+  </div>
   <div clas = "row">
     <div class="col-md-4">
       <%=@artist.name%>

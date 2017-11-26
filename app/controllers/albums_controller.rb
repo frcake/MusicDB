@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   def index
-    import_data
+    # import_artist
     @latest_albums = Album.includes(:photos).last(10).reverse
     if params[:term].nil? || params[:term].empty?
       @albums = Album.includes(:photos).all.paginate(page: params[:page] || 1, per_page: 6)
@@ -45,7 +45,6 @@ class AlbumsController < ApplicationController
     # artist_array = ['Gorillaz', 'New Order', 'The Prodigy', 'Pet Shop Boys', 'The Chemical Brothers']
     # artist_array = ['The Mothers of Invention', 'The Mahavishnu Orchestra', 'Tangerine Dream', 'The Shadows', 'The Tornados']
     # artist_array = ['Depeche Mode', 'Kraftwerk', 'New Order', 'Massive Attack', 'Daft Punk']
-    binding.pry
     # artist_array.each do |artist_name|
     #   @result = @discogs.search(artist_name, per_page: 10, type: :artist)
     #   next if @result.nil?
@@ -102,5 +101,24 @@ class AlbumsController < ApplicationController
     #     @tracks.save
     #   end
     # end
+  end
+
+  def import_artist
+    @discogs = Discogs::Wrapper.new('Test OAuth', user_token: 'uUAcpNNqtCmvrLITnpzKeuxfUcxsQdeGRJRggXqq')
+
+    database_artist = Artist.all.map(&:name)
+    database_artist.each do |art|
+      @result = @discogs.search(art, per_page: 1, type: :artist)
+      @artist = @discogs.get_artist(@result.results.first.id.to_s)
+
+      @save_artist = Artist.find_by_name(art)
+      @save_artist.update_attribute(:description, @artist.profile)
+
+      if !@artist.images.nil? && !@artist.images[1].nil?
+        @save_artist.photos.create(image: URI.parse(@artist.images[1]['uri']))
+      elsif !@artist.images.nil? && !@artist.images[0].nil?
+        @save_artist.photos.create(image: URI.parse(@artist.images[0]['uri']))
+      end
+    end
   end
 end
