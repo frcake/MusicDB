@@ -14,9 +14,9 @@
         <div class="form-group">
           <%= label_tag 'recipients', 'Choose recipients' %>
           <% if for_admin %>
-            <%= select_tag 'recipients', recipients_admin_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
+            <%= select_tag 'recipient_id', recipients_admin_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
           <%else%>
-            <%= select_tag 'recipients', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
+            <%= select_tag 'recipient_id', recipients_options(@chosen_recipient), multiple: true, class: 'form-control chosen-it col-md-12 select2' , required: true%>
           <%end%>
         </div>
         <%= submit_tag 'Send', class: 'btn btn-primary' %>
