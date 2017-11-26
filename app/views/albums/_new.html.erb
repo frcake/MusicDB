@@ -31,24 +31,29 @@
             </div>
           <% end %>
           <div class="form-group">
-            <label class= "pull-left"><%= f.label :name%></label>
-            <%= f.text_field :name, class: "form-control" %>
+            <label for="inputName">Name</label>
+            <%= f.text_field :name, class: "form-control",id:"inputName", :required => true %>
+            <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
-            <%= f.label :release_date %>
-            <%= f.date_field :release_date, class: "form-control" , id:"datepicker" %>
+            <label for="datepicker">Release Date</label>
+            <%= f.date_field :release_date, class: "form-control" , id:"datepicker", :required => true %>
+            <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
-            <label>Artist</label>
-            <%=f.select(:artist_id,artists_for_select,{include_blank:true , include_hidden:false} , class: 'select2 form-control')%>
+            <label for="artist">Artist</label>
+            <%=f.select(:artist_id,artists_for_select,{include_blank:true , include_hidden:false} ,id: 'artist', class: 'select2 form-control', :required => true)%>
+            <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
-            <label>Artist</label>
-            <%=f.select(:band_id, bands_for_select, {include_blank:true , include_hidden:false} , class: 'select2 form-control')%>
+            <label for="band">Band</label>
+            <%=f.select(:band_id, bands_for_select, {include_blank:true , include_hidden:false} ,id: 'band', class: 'select2 form-control', :required => true)%>
+            <div class="help-block with-errors"></div>
           </div>
           <div class="form-group">
-            <label>Category/Genre</label>
-            <%= f.select(:category_id, deep_categories_for_select, {include_blank:true , include_hidden:false}  , class: 'select2 form-control')%>
+            <label for="category">Category/Genre</label>
+            <%= f.select(:category_id, deep_categories_for_select, {include_blank:true , include_hidden:false} ,id: 'category' , class: 'select2 form-control', :required => true)%>
+            <div class="help-block with-errors"></div>
           </div>
           <% if @album.photos.exists? %>
             <% @album.photos.each do |z| %>

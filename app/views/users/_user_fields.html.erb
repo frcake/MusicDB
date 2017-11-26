@@ -24,8 +24,8 @@
       </div>
       <div id='register-form'  class='col-xs-12 col-sm-12 col-md-12'>
         <div class="form-group">
-          <label for="inputPassword">Password Confirmation</label>
-          <%=user.password_field :password_confirmation, placeholder: 'Password Confirmation' , class: 'form-control','data-minlength' => "6", :required => true%>
+          <label for="inputPasswordConfirmation">Password Confirmation</label>
+          <%=user.password_field :password_confirmation, placeholder: 'Password Confirmation' ,id: "inputPasswordConfirmation", class: 'form-control','data-minlength' => "6", :required => true%>
           <div class="help-block with-errors"></div>
         </div>
       </div>
