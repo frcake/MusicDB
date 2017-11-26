@@ -1,1 +1,5 @@
-<%= render 'messages/new_simple' , for_admin: true%>
+<% if current_user%>
+  <%= render 'messages/new_simple' , for_admin: true%>
+<%else%>
+  <h2>Please login!</h2>
+<%end%>
