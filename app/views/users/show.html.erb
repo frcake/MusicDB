@@ -4,6 +4,9 @@
     <li><a data-toggle="tab" href="#menu1">Followers</a></li>
     <li><a data-toggle="tab" href="#menu2">Following</a></li>
     <li><a data-toggle="tab" href="#menu3">User</a></li>
+    <% if current_user %>
+      <li><%= link_to 'Your Conversations', conversations_path %></li>
+    <%end%>
   </ul>
   <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>

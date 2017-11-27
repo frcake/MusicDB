@@ -72,7 +72,7 @@
   <% unless @albums.is_a? Array%>
     <div class="center-div">
       <div class="digg_pagination">
-        <%= will_paginate @albums , :previous_label => '<', :next_label => '>' %>
+        <%= will_paginate @albums, :previous_label => '<', :next_label => '>' %>
       </div>
     <%end%>
   </div>

@@ -1,7 +1,6 @@
 <tr>
   <td><%=band.name%></td>
-  <!--<td><%#=Category.find(band.category_id).name%></td>-->
-  <!-- Helper! -->
+  <td><%=band.category.name%></td>
   <td>
     <%= link_to admin_bands_edit_path(band),class: "btn btn-primary btn-xs pull-right" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>

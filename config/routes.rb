@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  default_url_options host: 'localhost:3000'
+
+  get '/contact', to: 'messages#contact'
+
   resources :record_libraries
   resources :friendships
   root 'albums#index'
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  resources :messages, only: %i[new create]
 
   get 'admin/dashboard' => 'admin#index'
   # The namespace  creates a nested url for admin panel check rake routes for details
@@ -46,10 +51,22 @@ Rails.application.routes.draw do
   resources :artists
   get 'album/:id' => 'albums#show', as: 'album'
 
-  resources :categories do
-    resources :albums do
+  # mailboxer
+  resources :conversations, only: %i[index show destroy create] do
+    member do
+      post :reply
+    end
+    member do
+      post :restore
+    end
+    collection do
+      delete :empty_trash
+    end
+    member do
+      post :mark_as_read
     end
   end
 
-  # resources :categories
+  get 'categories' => 'categories#index'
+  resources :categories
 end

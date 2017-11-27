@@ -1,4 +1,5 @@
 class Admin::UsersController < AdminController
+  before_action :require_admin
   before_action :set_user, only: %i[update destroy]
   def index_user
     @users = User.all
@@ -18,7 +19,7 @@ class Admin::UsersController < AdminController
     else
       render 'new'
     end
-end
+  end
 
   def user_edit
     @user = User.find(params[:id])

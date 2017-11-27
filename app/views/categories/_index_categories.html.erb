@@ -1,10 +1,10 @@
 <div class='container'>
   <div id="category-row" class="row">
-    <% if !Category.root.nil?%>
+    <% if !@root_categories.first.nil?%>
       <div id='category-col' class="col-md-3 col-md-offset-1">
         <h4>Root Categories</h4>
         <ul>
-          <%Category.roots.each do |f|%>
+          <%@root_categories.each do |f|%>
             <li>
               <%=f.name%>
             </li>
@@ -14,32 +14,24 @@
       <div id='category-col' class="col-md-3 col-md-offset-1">
         <h4>Child Categories</h4>
         <ul>
-          <%Category.roots.each do |r|%>
-            <%r.descendants.each do |f|%>
-              <!--DEPTH = 1 -->
-              <%if f.depth == 1 %>
-                <li>
-                  <%=f.parent.name%> >
-                  <%=f.name%>
-                </li>
-              <%end%>
-            <%end%>
+          <%@child_categories.each do |r|%>
+            <!--DEPTH = 1 -->
+            <li>
+              <%=r.parent.name%> >
+              <%=r.name%>
+            </li>
           <%end%>
         </ul>
       </div>
       <div id='category-col' class="col-md-3 col-md-offset-1">
         <h4>Grandchild Categories</h4>
         <ul>
-          <%Category.roots.each do |r|%>
-            <%r.descendants.each do |f|%>
-              <!--DEPTH = 2 -->
-              <%if f.depth == 2 %>
-                <li>
-                  <%=f.parent.name%> >
-                  <%=f.name%>
-                </li>
-              <%end%>
-            <%end%>
+          <% @grand_child_categories.each do |r|%>
+            <!--DEPTH = 2 -->
+            <li>
+              <%=r.parent.name%> >
+              <%=r.name%>
+            </li>
           <%end%>
         </ul>
       </div>

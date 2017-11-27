@@ -1,9 +1,8 @@
-class  Admin::AlbumsController < AdminController
-  include PhotosHelper
-  before_action :find_album, only: [:update,:show,:destroy,:edit]
-  #before_action :require_admin
+class Admin::AlbumsController < AdminController
+  before_action :find_album, only: %i[update show destroy edit]
+  before_action :require_admin
   def index_album
-    @albums = Album.all.order(updated_at: :desc)
+    @albums = Album.includes(%i[band category]).all
   end
 
   def new_album
@@ -23,7 +22,7 @@ class  Admin::AlbumsController < AdminController
       flash[:success] = "Album #{@album.name} is created"
       redirect_to admin_albums_path
     else
-      flash[:warning] = "Please try again"
+      flash[:warning] = 'Please try again'
       redirect_to admin_albums_new_path
     end
   end
@@ -44,23 +43,21 @@ class  Admin::AlbumsController < AdminController
       else
         @album.photos.create unless @album.photos.exists?
       end
-      flash[:success] = "Album updated!"
+      flash[:success] = 'Album updated!'
       redirect_to admin_albums_path
     else
 
-      flash[:warning] = "Please try again"
+      flash[:warning] = 'Please try again'
       redirect_to admin_albums_edit_path(@album)
-
 
     end
   end
 
   def destroy
     @album.destroy
-    flash[:success] = "Successfully deleted album"
+    flash[:success] = 'Successfully deleted album'
     redirect_to admin_albums_path
   end
-
 
   private
 
@@ -69,6 +66,6 @@ class  Admin::AlbumsController < AdminController
   end
 
   def album_params
-    params.require(:album).permit(:name,:artist_id,:category_id,:band_id,:release_date,:photos)
+    params.require(:album).permit(:name, :artist_id, :category_id, :band_id, :release_date, :photos)
   end
 end

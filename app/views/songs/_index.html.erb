@@ -17,8 +17,10 @@
             </tr>
           </thead>
           <tbody>
-            <%@songs.each do |song|%>
-              <%= render 'songs/song_row', song: song%>
+            <%albums.each do |album|%>
+              <% album.songs.each do |song|%>
+                <%= render  partial: 'songs/song_row',locals: { song: song ,album: album}%>
+              <%end%>
             <%end%>
           </tbody>
         </table>

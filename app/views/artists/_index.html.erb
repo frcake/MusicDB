@@ -12,7 +12,6 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Release Date</th>
               <th>Category/Genre</th>
               <th>Artist/Band</th>
               <th><%= link_to "New" , admin_artists_new_path, class: "pull-right btn btn-success btn-md"%></th>
@@ -20,7 +19,9 @@
           </thead>
           <tbody>
             <%@artists.each do |artist|%>
-              <%= render 'artists/artist_row', artist: artist%>
+              <% artist.bandmembers.each do |bandmember| %>
+                <%= render 'artists/artist_row', artist: artist,band: bandmember.band%>
+              <%end%>
             <%end%>
           </tbody>
         </table>

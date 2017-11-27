@@ -1,7 +1,7 @@
 <tr>
-  <td><%=artist.name%></td>
-  <!--<td><%#=Category.find(artist.category_id).name%></td>-->
-  <!-- Helper! -->
+  <td><%= artist.name %></td>
+  <td><%= artist.category.name %></td>
+  <td><%= band.name %></td>
   <td>
     <%= link_to admin_artists_edit_path(artist),class: "btn btn-primary btn-xs pull-right" do %>
       <span class="glyphicon glyphicon-edit"></span>Edit</button>

@@ -1,9 +1,9 @@
 class AlbumsController < ApplicationController
   def index
-    import_data
+    # import_artist
     @latest_albums = Album.includes(:photos).last(10).reverse
     if params[:term].nil? || params[:term].empty?
-      @albums = Album.all.paginate(page: params[:page] || 1, per_page: 6).includes(:photos)
+      @albums = Album.includes(:photos).all.paginate(page: params[:page] || 1, per_page: 6)
     else
       q = Searchkick.search params[:term], index_name: [Album, Band], model_includes: { Band => [:albums], Album => [:band] }, fields: [:name], match: :word_start
       @bands, @albums = q.results.partition { |r| r.is_a? Band }
@@ -14,6 +14,11 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
+    @category_name = Category.find(@album.category_id).name
+    @band = Band.includes(:albums, :artists, albums: %i[songs photos]).find(@album.band_id)
+    @photo = @band.albums.find { |x| x.id == @album.id }.photos.first.image
+    @songs = @band.albums.find { |x| x.id == @album.id }.songs
+    @artists = @band.artists
   end
 
   def import_data
@@ -96,5 +101,24 @@ class AlbumsController < ApplicationController
     #     @tracks.save
     #   end
     # end
+  end
+
+  def import_artist
+    @discogs = Discogs::Wrapper.new('Test OAuth', user_token: 'uUAcpNNqtCmvrLITnpzKeuxfUcxsQdeGRJRggXqq')
+
+    database_artist = Artist.all.map(&:name)
+    database_artist.each do |art|
+      @result = @discogs.search(art, per_page: 1, type: :artist)
+      @artist = @discogs.get_artist(@result.results.first.id.to_s)
+
+      @save_artist = Artist.find_by_name(art)
+      @save_artist.update_attribute(:description, @artist.profile)
+
+      if !@artist.images.nil? && !@artist.images[1].nil?
+        @save_artist.photos.create(image: URI.parse(@artist.images[1]['uri']))
+      elsif !@artist.images.nil? && !@artist.images[0].nil?
+        @save_artist.photos.create(image: URI.parse(@artist.images[0]['uri']))
+      end
+    end
   end
 end
