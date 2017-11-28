@@ -41,3 +41,5 @@
 #   user.password_confirmation = '123123'
 #   user.save!
 # end
+
+# User.all.each { |u| u.user_vector.dimensions = UserVector.new unless u.user_vector }

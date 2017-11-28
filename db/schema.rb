@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124173357) do
+ActiveRecord::Schema.define(version: 20171128180952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -169,6 +169,34 @@ ActiveRecord::Schema.define(version: 20171124173357) do
     t.index ["song_id"], name: "index_tracks_on_song_id"
   end
 
+  create_table "user_vectors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "dimensions"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "metal", default: 0
+    t.integer "country", default: 0
+    t.integer "classical", default: 0
+    t.integer "jazz", default: 0
+    t.integer "reggae", default: 0
+    t.integer "blues", default: 0
+    t.integer "pop", default: 0
+    t.integer "instrumental", default: 0
+    t.integer "vocal", default: 0
+    t.integer "electronica", default: 0
+    t.integer "techno", default: 0
+    t.integer "punk", default: 0
+    t.integer "drum_n_bass", default: 0
+    t.integer "indie", default: 0
+    t.integer "alternative", default: 0
+    t.integer "dubstep", default: 0
+    t.integer "rock", default: 0
+    t.integer "hip_hop", default: 0
+    t.integer "dance", default: 0
+    t.integer "rnb", default: 0
+    t.index ["user_id"], name: "index_user_vectors_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -192,4 +220,5 @@ ActiveRecord::Schema.define(version: 20171124173357) do
   add_foreign_key "record_libraries", "albums"
   add_foreign_key "record_libraries", "users"
   add_foreign_key "songs", "categories"
+  add_foreign_key "user_vectors", "users"
 end
