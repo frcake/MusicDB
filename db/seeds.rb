@@ -43,3 +43,7 @@
 # end
 
 # User.all.each { |u| u.user_vector.dimensions = UserVector.new unless u.user_vector }
+
+# this produces a hash with an array of ids for each category
+# category_hash = {}
+# Category.all.map { |cat| category_hash[cat.name.to_sym] = cat.albums.map(&:id) }
