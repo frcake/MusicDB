@@ -46,4 +46,34 @@
 
 # this produces a hash with an array of ids for each category
 # category_hash = {}
-# Category.all.map { |cat| category_hash[cat.name.to_sym] = cat.albums.map(&:id) }
+# Category.all.each { |cat| category_hash[cat.name.downcase.to_sym] = cat.albums.map(&:id) unless cat.albums.empty? }
+
+#--RESULTING HASH--#
+# category_hash = {:metal=>[16, 17, 18, 19, 20],
+#                  :country=>[36, 37, 38, 39, 40],
+#                  :jazz=>[11, 12, 13, 14, 15],
+#                  :reggae=>[51, 52, 53],
+#                  :blues=>[26, 27, 28, 29, 30],
+#                  :pop=>[46, 47, 48, 49, 50],
+#                  :instrumental=>[71, 72, 73, 74],
+#                  :electronica=>[75, 76, 77, 78, 79],
+#                  :punk=>[31, 32, 33, 34, 35],
+#                  :indie=>[54, 55, 56, 57],
+#                  :alternative=>[58, 59, 60, 61],
+#                  :rock=>[21, 22, 23, 24, 25],
+#                  :hip_hop=>[41, 42, 43, 44, 45],
+#                  :dance=>[66, 67, 68, 69, 70],
+#                  :rnb=>[62, 63, 64, 65]}
+
+# rock_users = User.all.map(&:id).sample(60)
+# hip_hop_users = User.all.map(&:id).sample(44)
+# pop_users = User.all.map(&:id).sample(38)
+# country_users = User.all.map(&:id).sample(20)
+# indie_users = User.all.map(&:id).sample(16)
+# punk_users = User.all.map(&:id).sample(10)
+# dance_users = User.all.map(&:id).sample(8)
+# jazz_users = User.all.map(&:id).sample(4)
+
+# up = UserProfiler.new
+
+# album_ids-> [1,5,6,7,32].sample(up.rock_profile[:rock].to_a.sample(1).first)
