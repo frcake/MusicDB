@@ -67,15 +67,6 @@
 
 # up = UserProfiler.new
 
-# rock_users = User.all.where("id >= 1 AND id <= 60").map(&:id)
-# hip_hop_users = User.all.where("id >= 61 AND id <= 104").map(&:id)
-# pop_users = User.all.where("id >= 105 AND id <= 142").map(&:id)
-# country_users = User.all.where("id >= 143 AND id <= 163").map(&:id)
-# indie_users = User.all.where("id >= 164 AND id <= 179").map(&:id)
-# punk_users = User.all.where("id >= 180 AND id <= 190").map(&:id)
-# dance_users = User.all.where("id >= 191 AND id <= 199").map(&:id)
-# jazz_users = User.all.where("id >= 200 AND id <= 204").map(&:id)
-
 # album_ids-> [1,5,6,7,32].sample(up.rock_profile[:rock].to_a.sample(1).first)
 
 # rock_users = User.all.where('id >= 1 AND id <= 60').map(&:id)
