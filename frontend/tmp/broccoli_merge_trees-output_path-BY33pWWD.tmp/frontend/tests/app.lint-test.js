@@ -1,1 +1,0 @@
-/home/frcake/Workspace/RubyOnRails/MusicDB/frontend/tmp/broccoli_merge_trees-input_base_path-nKW5PUHZ.tmp/0/frontend/tests/app.lint-test.js
