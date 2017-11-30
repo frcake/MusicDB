@@ -50,6 +50,9 @@
             <i class="fa fa-fw fa-male"></i> Users
           <%end%>
         </li>
+        <% if current_user %>
+          <li><%= link_to 'Admin Messages', conversations_path %></li>
+        <%end%>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

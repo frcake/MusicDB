@@ -1,0 +1,1 @@
+/home/frcake/Workspace/RubyOnRails/MusicDB/frontend/tmp/funnel-input_base_path-oSdKG0fE.tmp/vendor-suffix.js

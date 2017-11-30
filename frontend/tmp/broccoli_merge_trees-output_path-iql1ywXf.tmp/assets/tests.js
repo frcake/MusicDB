@@ -1,0 +1,1 @@
+/home/frcake/Workspace/RubyOnRails/MusicDB/frontend/tmp/broccoli_merge_trees-input_base_path-lxVIuK8v.tmp/0/assets/tests.js

@@ -1,0 +1,1 @@
+/home/frcake/Workspace/RubyOnRails/MusicDB/frontend/tmp/creator-output_path-h49BLZCb.tmp/version.js

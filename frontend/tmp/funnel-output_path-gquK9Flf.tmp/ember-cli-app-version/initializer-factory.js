@@ -1,0 +1,1 @@
+/home/frcake/Workspace/RubyOnRails/MusicDB/frontend/tmp/funnel-input_base_path-RSRzn8hu.tmp/initializer-factory.js
