@@ -49,6 +49,7 @@ Rails.application.routes.draw do
 
   resources :bands
   resources :artists
+  resources :recommendations, only: %i[index]
   get 'album/:id' => 'albums#show', as: 'album'
 
   # mailboxer

@@ -144,12 +144,12 @@
 # ##########USer vector##################3
 
 # category_sum_hash = {}
-# Category.all.each { |c| category_sum_hash[c.name.downcase.to_sym] = 0 unless !c.parent_id.nil? }
-
-# User.first.albums.map { |a| category_sum_hash[a.category.name.downcase.to_sym] += 1}
-
-# category_sum_hash.each { |k,v| u.user_vector.send("#{k}=",v)}
-
+# Category.all.each { |c| category_sum_hash[c.name.downcase.to_sym] = 0 if c.parent_id.nil? }
+#
+# User.first.albums.map { |a| category_sum_hash[a.category.name.downcase.to_sym] += 1 }
+#
+# category_sum_hash.each { |k, v| u.user_vector.send("#{k}=", v) }
+#--------------------------------------------------------------------------------------------------
 # User.all.each do |u|
 #   category_sum_hash = {}
 #
