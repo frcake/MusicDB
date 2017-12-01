@@ -52,6 +52,8 @@ Rails.application.configure do
   #   arguments: '-i'
   # }
   config.action_mailer.perform_deliveries = true
+  config.active_job.queue_adapter = :sidekiq
+
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_options = { from: 'brokernotify@gmail.com' }
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

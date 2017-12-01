@@ -125,6 +125,8 @@ GEM
       railties (>= 3.2)
     ember-cli-rails-assets (0.6.2)
     erubi (1.7.0)
+    et-orbi (1.0.5)
+      tzinfo
     execjs (2.7.0)
     faker (1.8.4)
       i18n (~> 0.5)
@@ -260,6 +262,8 @@ GEM
       rest-client (~> 2.0.2)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    rufus-scheduler (3.4.2)
+      et-orbi (~> 1.0)
     sass (3.5.3)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -285,6 +289,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.3, >= 3.3.3)
+    sidekiq-scheduler (2.1.9)
+      redis (~> 3)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -372,6 +381,7 @@ DEPENDENCIES
   select2-rails
   selenium-webdriver
   sidekiq
+  sidekiq-scheduler
   spring
   spring-watcher-listen (~> 2.0.0)
   therubyracer

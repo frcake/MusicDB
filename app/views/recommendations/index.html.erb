@@ -1,7 +1,20 @@
-<ul>
-  <%@distance.each do |d|%>
-    <li>
-      <%=d%>
-    </li>
-  <%end%>
-</ul>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Follow</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@recommended_users.each do |ru|%>
+        <tr>
+          <td><%=ru.id%></td>
+          <td><%=link_to ru.name , user_path(ru)%></td>
+          <td><%=link_to 'Add friend',friendships_path(:friend_id => ru.id),:type=> "button",:class => "btn btn-default", :method => :post%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

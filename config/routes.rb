@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   default_url_options host: 'localhost:3000'
 
@@ -67,6 +69,7 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
+  mount Sidekiq::Web, at: '/sidekiq'
 
   get 'categories' => 'categories#index'
   resources :categories
