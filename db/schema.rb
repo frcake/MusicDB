@@ -129,14 +129,6 @@ ActiveRecord::Schema.define(version: 20171201211951) do
     t.index ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
   end
 
-  create_table "music_recomendations", force: :cascade do |t|
-    t.bigint "user_id"
-    t.text "recommendation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_music_recomendations_on_user_id"
-  end
-
   create_table "music_recommendations", force: :cascade do |t|
     t.bigint "user_id"
     t.text "recommendation"
@@ -233,7 +225,6 @@ ActiveRecord::Schema.define(version: 20171201211951) do
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
-  add_foreign_key "music_recomendations", "users"
   add_foreign_key "music_recommendations", "users"
   add_foreign_key "record_libraries", "albums"
   add_foreign_key "record_libraries", "users"

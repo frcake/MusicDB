@@ -9,10 +9,10 @@ class RecommenderWorker
     # @distance = Matrix.build(@users.length)
     @all_distance = []
     @recommended_users = []
-    first_row = []
-    first_row << [nil]
-    first_row << @users.map(&:id)
-    @all_distance << first_row.flatten
+    @first_row = []
+    @first_row << [nil]
+    @first_row << @users.map(&:id)
+    @all_distance << @first_row.flatten
     @users.each do |user1|
       distance = []
       distance << user1.id
@@ -47,16 +47,16 @@ class RecommenderWorker
     Math.sqrt(sum_of_squares)
   end
 
-  def recommend_me(distance_array)
-    recommended_users = []
-    distance_array[current_user.id].each_with_index { |v, i| recommended_users << i unless v > 7 && v == 0.0 }
-    r = User.where(id: recommended_users)
-  end
+  # def recommend_me(distance_array)
+  #   recommended_users = []
+  #   distance_array[current_user.id].each_with_index { |v, i| recommended_users << i unless v > 7 && v == 0.0 }
+  #   r = User.where(id: recommended_users)
+  # end
 
   def users_recommendations(distance_array)
     @users.each do |user|
       recommended_users = []
-      distance_array[user.id].each_with_index { |v, i| recommended_users << i unless v > 7 || v == 0.0 }
+      distance_array[user.id].each_with_index { |v, i| recommended_users << @first_row[i] unless v > 5 || v == 0.0 }
       # r = ApplicationRecord::User.where(id: recommended_users)
       # byebug
       user.music_recommendation.recommendation = recommended_users
