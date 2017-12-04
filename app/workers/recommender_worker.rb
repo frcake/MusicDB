@@ -28,13 +28,9 @@ class RecommenderWorker
   def find_library_changes
     User.all.each do |u|
       category_sum_hash = {}
-
       Category.all.each { |c| category_sum_hash[c.name.downcase.to_sym] = 0 if c.parent_id.nil? }
-
       u.albums.each { |a| category_sum_hash[a.category.name.downcase.to_sym] += 1 }
-
       category_sum_hash.each { |k, v| u.user_vector.send("#{k}=", v) }
-
       u.user_vector.save
     end
   end
@@ -49,18 +45,24 @@ class RecommenderWorker
 
   # def recommend_me(distance_array)
   #   recommended_users = []
-  #   distance_array[current_user.id].each_with_index { |v, i| recommended_users << i unless v > 7 && v == 0.0 }
+  #   distance_array[current_user.id].each_with_index do |v,i|
+  #  recommended_users << i unless v > 7 && v == 0.0
+  # end
   #   r = User.where(id: recommended_users)
   # end
 
   def users_recommendations(distance_array)
     @users.each do |user|
       recommended_users = []
-      distance_array[user.id].each_with_index { |v, i| recommended_users << @first_row[i] unless v > 5 || v == 0.0 }
-      # r = ApplicationRecord::User.where(id: recommended_users)
-      # byebug
+      for z in 1..distance_array.size - 1 do
+        user_index = z unless distance_array[z].first != user.id
+      end
+
+      distance_array[user_index].each_with_index do |v, i|
+        recommended_users << @first_row[1][i] unless v > 4.2 || v == 0.0 || i == 1
+      end
+
       user.music_recommendation.recommendation = recommended_users
-      # byebug
       user.music_recommendation.save
     end
   end

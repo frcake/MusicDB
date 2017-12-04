@@ -23,7 +23,7 @@ class RecommendationsController < ApplicationController
   # end
 
   def index
-    @recommended_users = User.where(id: current_user.music_recommendation.recommendation)
+    @recommended_users = User.where(id: current_user.music_recommendation.recommendation).order('id ASC')
   end
   #
   # def euclidean_distance(p1, p2)
