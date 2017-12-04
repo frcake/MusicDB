@@ -22,8 +22,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @user.user_vector = UserVector.new
-      @user.save
+      # TODO: Use this to create needed vectors upon user creation
+      unless @user.user_vector
+        @user.user_vector = UserVector.new
+        @user.save
+      end
+      unless @user.music_recommendation
+        @user.music_recommendation = MusicRecommendation.new
+        @user.save
+      end
       log_in @user
       flash[:success] = 'Welcome to MusicDB!'
       redirect_to @user
