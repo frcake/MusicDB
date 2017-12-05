@@ -161,3 +161,17 @@
 #
 #   u.user_vector.save
 # end
+#
+#
+# ###########FRIENDSHIPS ###################3333
+
+# User.all.each do |user|
+#   user_recommendations = user.music_recommendation.recommendation
+#   befollow = []
+#   next if user_recommendations.blank?
+#   befollow = user_recommendations.sample(user_recommendations.length / 2)
+#   befollow.each do |bf|
+#     @friendship = user.friendships.build(friend_id: bf)
+#     @friendship.save
+#   end
+# end
