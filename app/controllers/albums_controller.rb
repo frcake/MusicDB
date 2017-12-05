@@ -1,6 +1,9 @@
 class AlbumsController < ApplicationController
   def index
+    # check_AC_import
+    # import_user
     # import_artist
+    # create_record_library
     @latest_albums = Album.includes(:photos).last(10).reverse
     if params[:term].nil? || params[:term].empty?
       @albums = Album.includes(:photos).all.paginate(page: params[:page] || 1, per_page: 6)
@@ -19,6 +22,22 @@ class AlbumsController < ApplicationController
     @photo = @band.albums.find { |x| x.id == @album.id }.photos.first.image
     @songs = @band.albums.find { |x| x.id == @album.id }.songs
     @artists = @band.artists
+  end
+
+  def check_AC_import
+    # @options_voice_collection = scheduled_report_params[:sr_options_voice].map { |collection| Vessel.find_by(did: collection['did']).id }
+    # @scheduled_report.scheduled_report_vessels.where(vessel_id: @options_voice_collection).update_all(voice: true)
+    #
+    # @options_data_collection = scheduled_report_params[:sr_options_data].map { |collection| Vessel.find_by(did: collection['did']).id }
+    # @scheduled_report.scheduled_report_vessels.where(vessel_id: @options_data_collection).update_all(data: true)
+
+    users = []
+    User.all.each do |x|
+      users << x.id
+    end
+    music_recommendations = MusicRecommendation.all.where(user_id: users)
+
+    music_recommendations.update_all(recommendation: [])
   end
 
   def import_data
@@ -118,6 +137,94 @@ class AlbumsController < ApplicationController
         @save_artist.photos.create(image: URI.parse(@artist.images[1]['uri']))
       elsif !@artist.images.nil? && !@artist.images[0].nil?
         @save_artist.photos.create(image: URI.parse(@artist.images[0]['uri']))
+      end
+    end
+  end
+
+  def import_user
+    id = (1..2000).to_a.shuffle
+    794.times do
+      user = User.new
+      user.user_vector = UserVector.new
+      user.music_recommendation = MusicRecommendation.new
+      user.username = Faker::Name.first_name
+      user.email = "user-#{id.pop}@email-#{id.pop}.com".delete(' ')
+      user.password = '123123'
+      user.password_confirmation = '123123'
+      user.save!
+    end
+  end
+
+  def create_record_library
+    rock_users = User.all.where('id >= 207 AND id <= 455').map(&:id)
+
+    rock_users.each do |u|
+      UserProfiler.new.rock_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    hip_hop_users = User.all.where('id >= 456 AND id <= 630').map(&:id)
+
+    hip_hop_users.each do |u|
+      UserProfiler.new.hip_hop_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    pop_users = User.all.where('id >= 631 AND id <= 782').map(&:id)
+
+    pop_users.each do |u|
+      UserProfiler.new.pop_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    country_users = User.all.where('id >= 781 AND id <= 861').map(&:id)
+
+    country_users.each do |u|
+      UserProfiler.new.country_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    indie_users = User.all.where('id >= 860 AND id <= 925').map(&:id)
+
+    indie_users.each do |u|
+      UserProfiler.new.indie_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    punk_users = User.all.where('id >= 926 AND id <= 965').map(&:id)
+
+    punk_users.each do |u|
+      UserProfiler.new.punk_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    dance_users = User.all.where('id >= 966 AND id <= 997').map(&:id)
+
+    dance_users.each do |u|
+      UserProfiler.new.dance_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
+      end
+    end
+
+    jazz_users = User.all.where('id >= 998 AND id <= 1000').map(&:id)
+
+    jazz_users.each do |u|
+      UserProfiler.new.jazz_profile.each do |album|
+        record = RecordLibrary.new(user_id: u, album_id: album)
+        record.save
       end
     end
   end

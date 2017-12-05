@@ -35,7 +35,7 @@
 #
 # 5000.times do
 #   user = User.new
-#   user.username = Faker::Name.unique.first_name
+#   user.username = Faker::Name.first_name
 #   user.email = Faker::Internet.safe_email(user.username)
 #   user.password = '123123'
 #   user.password_confirmation = '123123'
@@ -69,7 +69,7 @@
 
 # album_ids-> [1,5,6,7,32].sample(up.rock_profile[:rock].to_a.sample(1).first)
 
-# rock_users = User.all.where('id >= 1 AND id <= 60').map(&:id)
+# rock_users = User.all.where('id >= 207 AND id <= 455').map(&:id)
 #
 # rock_users.each do |u|
 #   UserProfiler.new.rock_profile.each do |album|
@@ -78,7 +78,7 @@
 #   end
 # end
 
-# hip_hop_users = User.all.where('id >= 61 AND id <= 104').map(&:id)
+# hip_hop_users = User.all.where('id >= 456 AND id <= 630').map(&:id)
 #
 # hip_hop_users.each do |u|
 #   UserProfiler.new.hip_hop_profile.each do |album|
@@ -87,7 +87,7 @@
 #   end
 # end
 #
-# pop_users = User.all.where('id >= 105 AND id <= 142').map(&:id)
+# pop_users = User.all.where('id >= 631 AND id <= 782').map(&:id)
 #
 # pop_users.each do |u|
 #   UserProfiler.new.pop_profile.each do |album|
@@ -96,7 +96,7 @@
 #   end
 # end
 #
-# country_users = User.all.where('id >= 143 AND id <= 163').map(&:id)
+# country_users = User.all.where('id >= 781 AND id <= 861').map(&:id)
 #
 # country_users.each do |u|
 #   UserProfiler.new.country_profile.each do |album|
@@ -105,7 +105,7 @@
 #   end
 # end
 #
-# indie_users = User.all.where('id >= 164 AND id <= 179').map(&:id)
+# indie_users = User.all.where('id >= 860 AND id <= 925').map(&:id)
 #
 # indie_users.each do |u|
 #   UserProfiler.new.indie_profile.each do |album|
@@ -114,7 +114,7 @@
 #   end
 # end
 #
-# punk_users = User.all.where('id >= 180 AND id <= 190').map(&:id)
+# punk_users = User.all.where('id >= 926 AND id <= 965').map(&:id)
 #
 # punk_users.each do |u|
 #   UserProfiler.new.punk_profile.each do |album|
@@ -123,7 +123,7 @@
 #   end
 # end
 #
-# dance_users = User.all.where('id >= 191 AND id <= 199').map(&:id)
+# dance_users = User.all.where('id >= 966 AND id <= 997').map(&:id)
 #
 # dance_users.each do |u|
 #   UserProfiler.new.dance_profile.each do |album|
@@ -132,7 +132,7 @@
 #   end
 # end
 #
-# jazz_users = User.all.where('id >= 200 AND id <= 204').map(&:id)
+# jazz_users = User.all.where('id >= 998 AND id <= 1000').map(&:id)
 #
 # jazz_users.each do |u|
 #   UserProfiler.new.jazz_profile.each do |album|

@@ -3,9 +3,11 @@ require 'active_support'
 class RecommenderWorker
   include Sidekiq::Worker
   def perform
+    @users = User.all.order('id ASC').includes(:user_vector, :music_recommendation)
+    @categories = Category.all
     find_library_changes
     # users_all_array = [][]
-    @users = User.all.order('id ASC').includes(:user_vector, :music_recommendation)
+
     # @distance = Matrix.build(@users.length)
     @all_distance = []
     @recommended_users = []
@@ -21,14 +23,13 @@ class RecommenderWorker
       end
       @all_distance << distance.to_a
     end
-    # byebug
     users_recommendations @all_distance
   end
 
   def find_library_changes
-    User.all.each do |u|
+    @users.each do |u|
       category_sum_hash = {}
-      Category.all.each { |c| category_sum_hash[c.name.downcase.to_sym] = 0 if c.parent_id.nil? }
+      @categories.each { |c| category_sum_hash[c.name.downcase.to_sym] = 0 if c.parent_id.nil? }
       u.albums.each { |a| category_sum_hash[a.category.name.downcase.to_sym] += 1 }
       category_sum_hash.each { |k, v| u.user_vector.send("#{k}=", v) }
       u.user_vector.save
@@ -52,7 +53,7 @@ class RecommenderWorker
   # end
 
   def users_recommendations(distance_array)
-    @users.each do |user|
+    Parallel.each(@users, in_threads: 8) do |user|
       recommended_users = []
       for z in 1..distance_array.size - 1 do
         user_index = z unless distance_array[z].first != user.id
@@ -61,9 +62,9 @@ class RecommenderWorker
       distance_array[user_index].each_with_index do |v, i|
         recommended_users << @first_row[1][i] unless v > 4.2 || v == 0.0 || i == 1
       end
-
-      user.music_recommendation.recommendation = recommended_users
-      user.music_recommendation.save
+      ActiveRecord::Base.connection_pool.with_connection do
+        user.music_recommendation.update_attribute(:recommendation, recommended_users)
+      end
     end
   end
 end
