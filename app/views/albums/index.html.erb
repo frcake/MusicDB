@@ -57,8 +57,10 @@
 <!-- START THE FEATURETTES -->
 <div class="container">
   <div class="row">
-    <%@albums.each do |album|%>
-      <%= render 'albums/local_index' ,album: album%>
+    <%if current_user%>
+      <% current_user.friends.each do |friend|%>
+        <%= render 'albums/local_index' ,album: friend.albums.last , user: friend%>
+      <%end%>
     <%end%>
   </div>
   <%if @bands%>

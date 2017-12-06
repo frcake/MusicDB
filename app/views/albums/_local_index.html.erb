@@ -17,6 +17,7 @@
             <%=link_to 'Remove from library', current_user.record_libraries.find {|x| x.album_id == album.id}, :class => 'btn btn-primary' , :method => :delete%>
           <%end%>
         <%end%>
+        Uploaded by: <%=link_to user.name , user_path(user.id)%>
       </p>
     </div>
   </div>

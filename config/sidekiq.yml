@@ -1,4 +1,7 @@
 :schedule:
   fill_db:
-    cron:  '0 * * * * *'   # Runs once per minute
+    cron:  '*/5 * * * * '   # Runs once per minute
     class: RecommenderWorker
+  matrix_computation:
+    cron:  '*/30 * * * * '   # Runs once per minute
+    class: MatrixWorker

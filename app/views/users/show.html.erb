@@ -67,7 +67,7 @@
       <h1>Record Library</h1>
       <%if  current_user%>
         <%@user.albums.each do |album|%>
-          <%= render 'albums/local_index', album: album%>
+          <%= render 'albums/local_index', album: album , user: @user%>
         <%end%>
       <%else%>
         <h3>Please log in</h3>
