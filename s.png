@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <table class="table">
     <thead>
       <tr>
@@ -21,4 +21,17 @@
       <%end%>
     </tbody>
   </table>
-</div>
+</div> -->
+
+
+<table class="table">
+  <tbody>
+    <%for i in 0..@all_connections.length-1%>
+      <tr>
+        <%for j in 0..@all_connections.length-1%>
+          <td><%=@all_connections[i][j]%></td>
+        <%end%>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

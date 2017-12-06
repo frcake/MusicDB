@@ -1,15 +1,25 @@
 <div class="container">
-  <div class="center-div">
-    <%@users.each do |user|%>
-      <div class="row">
-        <div class="col-md-6">
-          <%=user.username%>
-        </div>
-        <div class="col-md-3">
-          <%=link_to 'Add friend',friendships_path(:friend_id => user),:type=> "button",:class => "btn btn-default", :method => :post%>
-        </div>
-      </div>
-    <%end%>
-    <%= will_paginate @users , :previous_label => '<', :next_label => '>' %>
-  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Follow</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%@users.each do |user|%>
+        <tr>
+          <td><%=user.id%></td>
+          <td><%=link_to user.name , user_path(user)%></td>
+          <%unless current_user.friendships.collect(&:friend_id).include?(user.id)%>
+            <td><%=link_to 'Follow',friendships_path(:friend_id => user.id),:type=> "button",:class => "btn btn-success", :method => :post%></td>
+          <%else%>
+            <td><%=link_to "UnFollow", friendships_path(:friend_id => user.id),:type=> "button",:class => "btn btn-danger", :method => :delete%></td>
+          <%end%>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+  <%= will_paginate @users , :previous_label => '<', :next_label => '>' %>
 </div>

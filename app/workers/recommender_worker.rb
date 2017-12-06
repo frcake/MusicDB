@@ -60,8 +60,11 @@ class RecommenderWorker
       end
 
       distance_array[user_index].each_with_index do |v, i|
-        recommended_users << @first_row[1][i] unless v > 4.2 || v == 0.0 || i == 1
+        if i != 0
+          recommended_users << @first_row.flatten[i] unless v > 4.2 || v == 0.0
+        end
       end
+
       ActiveRecord::Base.connection_pool.with_connection do
         user.music_recommendation.update_attribute(:recommendation, recommended_users)
       end

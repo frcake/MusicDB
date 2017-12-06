@@ -164,7 +164,7 @@
 #
 #
 # ###########FRIENDSHIPS ###################3333
-
+#
 # User.all.each do |user|
 #   user_recommendations = user.music_recommendation.recommendation
 #   befollow = []

@@ -39,7 +39,7 @@
               <%@user.friendships.each do |friendship|%>
                 <tr>
                   <td><%=friendship.friend.username%> </td>
-                  <td><%=link_to "remove", friendship ,:type=> "button",:class => "btn btn-default", :method => :delete%></td>
+                  <td><%=link_to "UnFollow", friendship ,:type=> "button",:class => "btn btn-danger", :method => :delete%></td>
                 </tr>
               <%end%>
             </tbody>
@@ -53,11 +53,11 @@
           <h3>Followed by</h3>
           <table class="table table-sm table-dark">
             <tbody>
-              <tr>
-                <% @user.inverse_friends.each do |inverse_friend|%>
+              <% @user.inverse_friends.each do |inverse_friend|%>
+                <tr>
                   <td><%= inverse_friend.username%></td>
-                <%end%>
-              </tr>
+                </tr>
+              <%end%>
             </tbody>
           </table>
         </div>
